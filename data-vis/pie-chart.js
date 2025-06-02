@@ -51,6 +51,34 @@ Arrays must be the same length!`);
       arc(this.x, this.y,
           this.diameter, this.diameter,
           lastAngle, lastAngle + angles[i] + 0.001); // Hack for 0!
+    
+    //-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
+    // Creating a variable "d" to calculate the distance between two points. Here, it's the distance between the mouse (point 1) and the center of the pie chart (point 2).
+    // Structure: dist(x1, y1, x2, y2), where x1/y1 are coordenates of the first point and x2/y2 coordenats of the second point.
+    let d = dist(mouseX, mouseY, this.x, this.y);
+    let mouse_pie_angle = null;  // ✅ DECLARADA FORA PARA SER USADA DEPOIS
+
+    //
+    if (d < this.diameter / 2) { // Divided by two since radius = diameter/2.
+      // atan2(y, x) is from arctangente, it calculates the angle of a vector between 2 points, where x is the distance in x and y the distance in y. IT'S THE SIZE OF A VECTOR.
+      // It returns an angle in radius from -PI to PI (-180º to +180º)
+      mouse_pie_angle = atan2(mouseY - this.y, mouseX - this.x);
+
+      // Since the atan2 only returns an angle in radius from -PI to PI (-180º to +180º) and we need 0 to 2PI, if the value is negative, we sum + 2PI
+      if (mouse_pie_angle < 0) {
+        mouse_pie_angle += TWO_PI;
+      }
+    }
+
+    if (mouse_pie_angle !== null && mouse_pie_angle >= lastAngle && mouse_pie_angle < lastAngle + angles[i]) {
+      let [r, g, b] = colours[i].levels;
+      fill(255);
+      stroke(0);
+      strokeWeight(2);
+      textAlign('center', 'center');
+      textSize(16);
+      text(data[i].toFixed(2) + "%", mouseX, mouseY - 10);
+    }
 
       if (labels) {
         this.makeLegendItem(labels[i], i, colour);

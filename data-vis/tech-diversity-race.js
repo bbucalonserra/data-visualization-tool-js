@@ -67,8 +67,17 @@ function TechDiversityRace() {
     // Copy the row labels from the table (the first item of each row).
     var labels = this.data.getColumn(0);
 
+//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
     // Colour to use for each category.
-    var colours = ['blue', 'red', 'green', 'pink', 'purple', 'yellow'];
+    let colours = [
+      color('#002147'), // Royal Blue
+      color('#C8102E'), // Scarlet Red
+      color('#FFD700'), // Gold
+      color('#007A33'), // Emerald Green
+      color('#4B0082'), // Deep Purple
+      color('#A8A9AD')  // Silver Gray
+    ];
+//-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
 
     // Make a title.
     var title = 'Employee diversity at ' + companyName;
