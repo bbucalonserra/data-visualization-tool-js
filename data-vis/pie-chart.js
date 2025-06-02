@@ -64,7 +64,6 @@ Arrays must be the same length!`);
       // It returns an angle in radius from -PI to PI (-180º to +180º)
       mouse_pie_angle = atan2(mouseY - this.y, mouseX - this.x);
 
-      // Since the atan2 only returns an angle in radius from -PI to PI (-180º to +180º) and we need 0 to 2PI, if the value is negative, we sum + 2PI
       if (mouse_pie_angle < 0) {
         mouse_pie_angle += TWO_PI;
       }
@@ -72,12 +71,36 @@ Arrays must be the same length!`);
 
     if (mouse_pie_angle !== null && mouse_pie_angle >= lastAngle && mouse_pie_angle < lastAngle + angles[i]) {
       let [r, g, b] = colours[i].levels;
-      fill(255);
+      let valueText = data[i].toFixed(2) + "%";
+
+      textSize(14);
+      textAlign('left', 'top');
+      textLeading(18);
+
+      let textW = textWidth(valueText) + 10;
+      let textH = 25;
+
+      // Horizontal position
+      let tooltipX = (mouseX + 10 + textW > width)
+                    ? mouseX - textW - 10
+                    : mouseX + 10;
+
+      // Vertical position
+      let tooltipY = mouseY - textH - 10;
+      if (tooltipY < 0) {
+        tooltipY = mouseY + 10;
+      }
+
+      // Background
+      fill(255, 255, 255, 230);
       stroke(0);
-      strokeWeight(2);
-      textAlign('center', 'center');
-      textSize(16);
-      text(data[i].toFixed(2) + "%", mouseX, mouseY - 10);
+      strokeWeight(1);
+      rect(tooltipX, tooltipY, textW, textH);
+
+      // Text
+      fill(0);
+      noStroke();
+      text(valueText, tooltipX + 5, tooltipY + 5);
     }
 
       if (labels) {

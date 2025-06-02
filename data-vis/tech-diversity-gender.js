@@ -35,8 +35,8 @@ function TechDiversityGender() {
   this.midX = (this.layout.plotWidth() / 2) + this.layout.leftMargin;
 
   // Default visualisation colours.
-  this.femaleColour = color(255, 0 ,0);
-  this.maleColour = color(0, 255, 0);
+  this.femaleColour = color('#C8102E');
+  this.maleColour = color('#002147');
 
   // Property to represent whether data has been loaded.
   this.loaded = false;
@@ -109,6 +109,40 @@ function TechDiversityGender() {
            lineY,
            this.mapPercentToWidth(company.male),
            lineHeight - this.layout.pad);
+        
+        // Adding tooltip 
+        if (mouseY >= lineY && mouseY <= lineY + lineHeight - this.layout.pad) {
+          push();
+          var tooltipText = `Female: ${company.female}%\nMale: ${company.male}%`;
+
+          textSize(14);
+          textLeading(18);
+          var textW = textWidth('Female: 100%\nMale: 100%') + 10;
+          var textH = 40;
+
+          // Horizontal position
+          var tooltipX = (mouseX + 10 + textW > width)
+                        ? mouseX - textW - 10
+                        : mouseX + 10;
+
+          // Vertical position
+          var tooltipY = mouseY - textH - 10;
+          if (tooltipY < 0) {
+            tooltipY = mouseY + 10;
+          }
+
+          fill(255, 255, 255, 230);
+          stroke(0);
+          strokeWeight(1);
+          rect(tooltipX, tooltipY, textW, textH);
+
+          fill(0);
+          noStroke();
+          textAlign('left', 'top');
+          text(tooltipText, tooltipX + 5, tooltipY + 5);
+          
+          pop();
+        }
     }
 
     // Draw 50% line
