@@ -1,0 +1,31 @@
+Carimbo de data/hora,What age group do you belong to?,What gender do you identify with?,Are you currently studying at a university and/or working full time? ,"Do you use generative AI (ChatGPT, Gemini, etc.) ?",What generative AI platform do you use the most?,How many hours do you use generative AI a day on average in the last month?,"In general, for what activities do use generative AI? [School]","In general, for what activities do use generative AI? [Work]","In general, for what activities do use generative AI? [General activities outside work and study]","In general, for what activities do use generative AI? [Entertainment]",How often do you double-check AI-generated information for accuracy?,Do you think AI impacted education positively or negatively?
+01/06/2025 18:53:22,26-35,Male,Yes,Yes,Gemini,1-2 hours,Rarely,Rarely,Rarely,Almost never,Most of the time,3
+01/06/2025 18:57:04,26-35,Male,Yes,Yes,Copilot,1-2 hours,Almost always,Almost always,Almost always,Almost always,Sometimes,5
+01/06/2025 19:21:59,26-35,Female,No,Yes,ChatGPT,30 min - 1 hour,Almost never,Rarely,Frequently,Frequently,Sometimes,5
+01/06/2025 20:14:07,26-35,Male,Yes,Yes,Perplexity,1-2 hours,Rarely,Frequently,Rarely,Rarely,Most of the time,5
+01/06/2025 20:26:40,26-35,Male,Yes,Yes,ChatGPT,More than 2 hours,Almost always,Almost always,Frequently,Almost never,Always,4
+01/06/2025 20:33:23,26-35,Male,No,Yes,ChatGPT,Less than 30 min,Rarely,Rarely,Rarely,Rarely,About half the time,3
+01/06/2025 21:04:26,18-25,Prefer not to say,No,No,ChatGPT,Less than 30 min,Almost never,Almost never,Almost never,Rarely,Never,2
+01/06/2025 22:35:18,26-35,Male,Yes,Yes,Gemini,30 min - 1 hour,Rarely,Almost always,Almost always,Almost always,Always,5
+02/06/2025 00:48:46,26-35,Male,Yes,Yes,ChatGPT,30 min - 1 hour,Almost always,Frequently,Almost never,Almost never,Most of the time,2
+02/06/2025 05:28:59,18-25,Male,Yes,Yes,ChatGPT,30 min - 1 hour,Frequently,Rarely,Rarely,Rarely,Always,3
+02/06/2025 08:30:27,26-35,Female,Yes,Yes,ChatGPT,1-2 hours,Rarely,Almost always,Frequently,Frequently,About half the time,4
+02/06/2025 09:16:57,26-35,Male,Yes,Yes,Gemini,1-2 hours,Frequently,Frequently,Frequently,Frequently,Most of the time,4
+02/06/2025 09:25:18,18-25,Male,Yes,Yes,ChatGPT,Less than 30 min,Frequently,Frequently,Frequently,Rarely,Always,5
+02/06/2025 13:42:38,18-25,Male,Yes,Yes,ChatGPT,Less than 30 min,Frequently,Frequently,Frequently,Almost never,Sometimes,3
+02/06/2025 14:41:08,26-35,Male,Yes,Yes,Claude,More than 2 hours,Rarely,Frequently,Almost always,Almost always,Most of the time,3
+02/06/2025 15:01:51,36-45,Male,Yes,Yes,ChatGPT,Less than 30 min,Frequently,Frequently,Rarely,Almost never,Most of the time,5
+02/06/2025 16:46:46,36-45,Male,Yes,Yes,grok,Less than 30 min,Rarely,Frequently,Frequently,Rarely,Most of the time,3
+02/06/2025 18:19:29,36-45,Male,Yes,Yes,ChatGPT,More than 2 hours,Rarely,Frequently,Rarely,Almost never,Most of the time,2
+02/06/2025 18:31:17,26-35,Male,No,Yes,Bing Ai,More than 2 hours,Frequently,Almost always,Rarely,Almost never,Never,3
+02/06/2025 22:10:25,26-35,Male,Yes,Yes,ChatGPT,More than 2 hours,Almost always,Almost always,Frequently,Frequently,Always,5
+02/06/2025 22:31:07,26-35,Male,Yes,Yes,Meta Ai,1-2 hours,Frequently,Rarely,Frequently,Rarely,Most of the time,4
+02/06/2025 22:35:25,26-35,Male,Yes,Yes,ChatGPT,30 min - 1 hour,Frequently,Almost always,Almost always,Rarely,About half the time,3
+03/06/2025 04:28:44,18-25,Male,Yes,Yes,Custom LLM using API of multiple platforms & NotebookLLM Pro,More than 2 hours,Frequently,Almost always,Almost always,Frequently,Most of the time,5
+03/06/2025 05:44:26,26-35,Male,Yes,Yes,ChatGPT,More than 2 hours,Frequently,Frequently,Frequently,Almost never,Most of the time,2
+03/06/2025 07:19:44,18-25,Male,Yes,Yes,ChatGPT,More than 2 hours,Frequently,Almost never,Frequently,Rarely,Most of the time,4
+03/06/2025 07:45:34,26-35,Male,Yes,Yes,ChatGPT,1-2 hours,Rarely,Frequently,Frequently,Rarely,Always,4
+03/06/2025 07:52:35,26-35,Male,No,Yes,ChatGPT,1-2 hours,Frequently,Frequently,Almost never,Rarely,About half the time,4
+03/06/2025 12:40:09,26-35,Female,Yes,Yes,ChatGPT,30 min - 1 hour,"Frequently, Rarely",Frequently,Almost always,Almost always,Never,3
+04/06/2025 10:06:54,26-35,Male,Yes,Yes,ChatGPT,30 min - 1 hour,Almost never,Frequently,Rarely,Almost never,Never,5
+04/06/2025 13:24:14,26-35,Female,Yes,Yes,Gemini,Less than 30 min,Frequently,Rarely,Rarely,Rarely,Most of the time,4
