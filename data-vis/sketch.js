@@ -58,7 +58,7 @@ function draw() {
   textFont('Roboto');
   fill(255);
   noStroke();
-  text("ANALYTICS", 88, 160);
+  text("ANALYTICS", 88, 150);
   pop();
 
   if (gallery.selectedVisual != null) {

@@ -3,7 +3,7 @@ function PayGapTimeSeries() {
   x_offset = 100;
 
   // Name for the visualisation to appear in the menu bar.
-  this.name = 'Timeseries Pay GAP';
+  this.name = 'Pay GAP TimeSeries';
 
   // Each visualisation must have a unique ID with no special
   // characters.
