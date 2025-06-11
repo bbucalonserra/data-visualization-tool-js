@@ -9,7 +9,8 @@ body{
     height: 50px;
     list-style-type: none;
     padding: 5px;
-    color: white
+    color: white;
+    font-weight: 500;
 }
 
 .visuals-menu {

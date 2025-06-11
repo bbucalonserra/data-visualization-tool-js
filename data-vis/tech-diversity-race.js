@@ -1,7 +1,7 @@
 function TechDiversityRace() {
 
   // Name for the visualisation to appear in the menu bar.
-  this.name = 'Tech Diversity: Race';
+  this.name = 'Race Tech Diversity';
 
   // Each visualisation must have a unique ID with no special
   // characters.

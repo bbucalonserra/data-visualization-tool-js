@@ -1,4 +1,3 @@
-
 // Global variable to store the gallery object. The gallery object is
 // a container for all the visualisations.
 var gallery;
@@ -40,7 +39,7 @@ function draw() {
   canvas = new CanvasDesign();
 
   // Draw menu bar at the left of the canvas.
-  canvas.draw_menu_bar(42, 0, 260, height, 0, "#DF1E37");
+  canvas.draw_menu_bar(42, 0, 260, height, 0, "#C8102E"); 
 
   // Draw upper rectangle
   canvas.draw_menu_bar(42, 0, width, 100, 0, "#DCDCDC80");

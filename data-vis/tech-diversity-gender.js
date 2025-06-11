@@ -4,7 +4,7 @@ function TechDiversityGender() {
   x_offset = 100;
   y_offset = 100;
   // Name for the visualisation to appear in the menu bar.
-  this.name = 'Tech Diversity: Gender';
+  this.name = 'Gender Tech Diversity';
 
   // Each visualisation must have a unique ID with no special
   // characters.
