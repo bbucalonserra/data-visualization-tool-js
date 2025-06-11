@@ -12,9 +12,9 @@ function TechDiversityGender() {
   this.layout = {
     // Locations of margin positions. Left and bottom have double margin
     // size due to axis and tick labels.
-    leftMargin: 130,
+    leftMargin: 600,
     rightMargin: width,
-    topMargin: 30,
+    topMargin: 200,
     bottomMargin: height,
     pad: 5,
 
@@ -72,7 +72,7 @@ function TechDiversityGender() {
     // Draw Female/Male labels at the top of the plot.
     this.drawCategoryLabels();
 
-    var lineHeight = (height - this.layout.topMargin) /
+    var lineHeight = (height*0.90 - this.layout.topMargin) /
         this.data.getRowCount();
 
     for (var i = 0; i < this.data.getRowCount(); i++) {
@@ -127,15 +127,15 @@ function TechDiversityGender() {
     textAlign('left', 'top');
     text('Female',
          this.layout.leftMargin,
-         this.layout.pad);
+         this.layout.pad + 170);
     textAlign('center', 'top');
     text('50%',
          this.midX,
-         this.layout.pad);
+         this.layout.pad + 170);
     textAlign('right', 'top');
     text('Male',
          this.layout.rightMargin,
-         this.layout.pad);
+         this.layout.pad + 170);
   };
 
   this.mapPercentToWidth = function(percent) {

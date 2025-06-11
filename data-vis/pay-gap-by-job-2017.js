@@ -1,5 +1,10 @@
 function PayGapByJob2017() {
 
+  // Offset for the x/y-axis.
+  this.offsetX = 480;
+  this.offsetY = 200;
+  this.scale =  0.8;
+
   // Name for the visualisation to appear in the menu bar.
   this.name = 'Pay gap by job: 2017';
 
@@ -12,6 +17,8 @@ function PayGapByJob2017() {
 
   // Graph properties.
   this.pad = 20;
+  this.padX = this.pad + this.offsetX;
+
   this.dotSizeMin = 15;
   this.dotSizeMax = 40;
 
@@ -82,14 +89,21 @@ function PayGapByJob2017() {
       // x = propFemale
       // y = payGap
       // size = numJobs
-      ellipse(
-        map(propFemale[i], propFemaleMin, propFemaleMax,
-            this.pad, width - this.pad),
-        map(payGap[i], payGapMin, payGapMax,
-            height - this.pad, this.pad),
-        map(numJobs[i], numJobsMin, numJobsMax,
-            this.dotSizeMin, this.dotSizeMax)
-      );
+    ellipse(
+      ( map(propFemale[i], propFemaleMin, propFemaleMax,
+            this.pad, width - this.pad)
+        + this.offsetX
+      ) * this.scale,
+
+      ( map(payGap[i], payGapMin, payGapMax,
+            height - this.pad, this.pad)
+        + this.offsetY
+      ) * this.scale,
+
+      map(numJobs[i], numJobsMin, numJobsMax,
+          this.dotSizeMin, this.dotSizeMax)
+      * this.scale
+    );
     }
   };
 
@@ -97,15 +111,19 @@ function PayGapByJob2017() {
     stroke(200);
 
     // Add vertical line.
-    line(width / 2,
-         0 + this.pad,
-         width / 2,
-         height - this.pad);
+    line(
+      (width/2 + this.offsetX) * this.scale,
+      (this.pad           + this.offsetY) * this.scale,
+      (width/2 + this.offsetX) * this.scale,
+      (height - this.pad  + this.offsetY) * this.scale
+    );
 
     // Add horizontal line.
-    line(0 + this.pad,
-         height / 2,
-         width - this.pad,
-         height / 2);
+    line(
+      (this.pad + this.offsetX)          * this.scale,
+      (height/2 + this.offsetY)          * this.scale,
+      (width   - this.pad + this.offsetX) * this.scale,
+      (height/2 + this.offsetY)          * this.scale
+    );
   };
 }

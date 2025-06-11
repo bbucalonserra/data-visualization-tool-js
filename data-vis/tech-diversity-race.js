@@ -31,7 +31,7 @@ function TechDiversityRace() {
 
     // Create a select DOM element.
     this.select = createSelect();
-    this.select.position(350, 40);
+    this.select.position(0.36 * width, 0.18 * height);
 
     // Fill the options with all company names.
     var companies = this.data.columns;
@@ -46,7 +46,7 @@ function TechDiversityRace() {
   };
 
   // Create a new pie chart object.
-  this.pie = new PieChart(width / 2, height / 2, width * 0.4);
+  this.pie = new PieChart(900, height / 1.7, width * 0.3);
 
   this.draw = function() {
     if (!this.loaded) {

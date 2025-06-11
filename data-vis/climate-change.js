@@ -20,10 +20,10 @@ function ClimateChange() {
 
     // Locations of margin positions. Left and bottom have double margin
     // size due to axis and tick labels.
-    leftMargin: marginSize * 2,
+    leftMargin: marginSize * 14,
     rightMargin: width - marginSize,
-    topMargin: marginSize,
-    bottomMargin: height - marginSize * 2,
+    topMargin: marginSize * 6,
+    bottomMargin: height - marginSize * 4,
     pad: 5,
 
     plotWidth: function() {

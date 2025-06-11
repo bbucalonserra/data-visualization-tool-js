@@ -5,8 +5,8 @@ var gallery;
 
 function setup() {
   // Create a canvas to fill the content div from index.html.
-  canvasContainer = select('#app');
-  var c = createCanvas(1024, 576);
+  canvasContainer = select('.app');
+  var c = createCanvas(1400, 800);
   c.parent('app');
 
   // Create a new gallery object.

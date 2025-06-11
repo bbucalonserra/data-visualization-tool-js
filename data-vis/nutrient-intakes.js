@@ -25,10 +25,10 @@ function NutrientsTimeSeries() {
 
     // Locations of margin positions. Left and bottom have double margin
     // size due to axis and tick labels.
-    leftMargin: marginSize * 2,
+    leftMargin: marginSize * 14,
     rightMargin: width - marginSize,
-    topMargin: marginSize,
-    bottomMargin: height - marginSize * 2,
+    topMargin: marginSize + 200,
+    bottomMargin: height - marginSize * 3,
     pad: 5,
 
     plotWidth: function() {
@@ -152,7 +152,7 @@ function NutrientsTimeSeries() {
         else {
           noStroke();
           fill(this.colors[i]);
-          text(l, 100, this.mapPayGapToHeight(current.value))
+          text(l, 630, this.mapPayGapToHeight(current.value))
         }
       // Assign current year to previous year so that it is available
       // during the next iteration of this loop to give us the start

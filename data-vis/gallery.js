@@ -14,7 +14,7 @@
         alert('Make sure your visualisation has an id and name!');
       }
 
-      // Check that the vis object has a unique id.
+      // Check that the  vis object has a unique id.
       if (this.findVisIndex(vis.id) != null) {
         alert(`Vis '${vis.name}' has a duplicate id: '${vis.id}'`);
       }
@@ -59,7 +59,7 @@
       })
         
         
-      var visMenu = select('#visuals-menu');
+      var visMenu = select('.visuals-menu');
       visMenu.child(menuItem);
 
       // Preload data if necessary.
