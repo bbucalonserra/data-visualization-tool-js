@@ -59,7 +59,7 @@
       })
         
         
-      var visMenu = select('.visuals-menu');
+      var visMenu = select('#visuals-menu');
       visMenu.child(menuItem);
 
       // Preload data if necessary.

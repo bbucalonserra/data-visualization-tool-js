@@ -109,40 +109,6 @@ function TechDiversityGender() {
            lineY,
            this.mapPercentToWidth(company.male),
            lineHeight - this.layout.pad);
-        
-        // Adding tooltip 
-        if (mouseY >= lineY && mouseY <= lineY + lineHeight - this.layout.pad) {
-          push();
-          var tooltipText = `Female: ${company.female}%\nMale: ${company.male}%`;
-
-          textSize(14);
-          textLeading(18);
-          var textW = textWidth('Female: 100%\nMale: 100%') + 10;
-          var textH = 40;
-
-          // Horizontal position
-          var tooltipX = (mouseX + 10 + textW > width)
-                        ? mouseX - textW - 10
-                        : mouseX + 10;
-
-          // Vertical position
-          var tooltipY = mouseY - textH - 10;
-          if (tooltipY < 0) {
-            tooltipY = mouseY + 10;
-          }
-
-          fill(255, 255, 255, 230);
-          stroke(0);
-          strokeWeight(1);
-          rect(tooltipX, tooltipY, textW, textH);
-
-          fill(0);
-          noStroke();
-          textAlign('left', 'top');
-          text(tooltipText, tooltipX + 5, tooltipY + 5);
-          
-          pop();
-        }
     }
 
     // Draw 50% line
