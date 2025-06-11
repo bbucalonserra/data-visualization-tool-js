@@ -1,14 +1,14 @@
 function NutrientsTimeSeries() {
 
   // Name for the visualisation to appear in the menu bar.
-  this.name = 'Nutrients';
+  this.name = 'Vitamins';
 
   // Each visualisation must have a unique ID with no special
   // characters.
   this.id = 'nutrients-timeseries';
 
   // Title to display above the plot.
-  this.title = 'Nutrition Instake';
+  this.title = 'Vitamins Instake';
 
     // Names for each axis.
   this.xAxisLabel = 'year';

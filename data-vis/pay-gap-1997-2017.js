@@ -1,5 +1,7 @@
 function PayGapTimeSeries() {
 
+  x_offset = 100;
+
   // Name for the visualisation to appear in the menu bar.
   this.name = 'Pay gap: 1997-2017';
 
@@ -23,10 +25,10 @@ function PayGapTimeSeries() {
 
     // Locations of margin positions. Left and bottom have double margin
     // size due to axis and tick labels.
-    leftMargin: marginSize * 14,
-    rightMargin: width - marginSize,
-    topMargin: marginSize + 200,
-    bottomMargin: height - marginSize * 3,
+    leftMargin: marginSize + 3.8 * x_offset,
+    rightMargin: width - marginSize - x_offset,
+    topMargin: marginSize + x_offset * 2,
+    bottomMargin: height - marginSize * 4,
     pad: 5,
 
     plotWidth: function() {

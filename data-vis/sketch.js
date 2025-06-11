@@ -3,6 +3,10 @@
 // a container for all the visualisations.
 var gallery;
 
+function preload() {
+  uol_logo = loadImage('assets/uol_logo.png');
+}
+
 function setup() {
   // Create a canvas to fill the content div from index.html.
   canvasContainer = select('.app');
@@ -23,7 +27,31 @@ function setup() {
 }
 
 function draw() {
+
   background(255);
+  
+  // Draw borders into the canvas.
+  noFill();
+  stroke(0);
+  strokeWeight(2);
+  rect(42, 0, width - 42, height);
+  
+
+  canvas = new CanvasDesign();
+
+  // Draw menu bar at the left of the canvas.
+  canvas.draw_menu_bar(42, 0, 265, height, 0, "#DF1E37");
+
+  // Draw upper rectangle
+  canvas.draw_menu_bar(42, 0, width, 100, 0, "#DCDCDC80");
+
+  // Draw image
+  // Fix proportions
+  let targetHeight = 70;
+  let aspect = uol_logo.width / uol_logo.height;
+  let targetWidth = targetHeight * aspect;
+  image(uol_logo, 75, 15, targetWidth, targetHeight);
+  
   if (gallery.selectedVisual != null) {
     gallery.selectedVisual.draw();
   }

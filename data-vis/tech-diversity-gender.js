@@ -1,5 +1,8 @@
 function TechDiversityGender() {
 
+  // Offset
+  x_offset = 100;
+  y_offset = 100;
   // Name for the visualisation to appear in the menu bar.
   this.name = 'Tech Diversity: Gender';
 
@@ -12,9 +15,9 @@ function TechDiversityGender() {
   this.layout = {
     // Locations of margin positions. Left and bottom have double margin
     // size due to axis and tick labels.
-    leftMargin: 600,
-    rightMargin: width,
-    topMargin: 200,
+    leftMargin: width - x_offset * 9.5,
+    rightMargin: width - x_offset * 1,
+    topMargin: 100 + y_offset,
     bottomMargin: height,
     pad: 5,
 

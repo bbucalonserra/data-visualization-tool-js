@@ -1,9 +1,9 @@
 function PayGapByJob2017() {
 
   // Offset for the x/y-axis.
-  this.offsetX = 480;
-  this.offsetY = 200;
-  this.scale =  0.8;
+  this.offsetX = 550;
+  this.offsetY = 300;
+  this.scale =  0.7;
 
   // Name for the visualisation to appear in the menu bar.
   this.name = 'Pay gap by job: 2017';

@@ -79,7 +79,8 @@ function UKFoodAttitudes() {
 //-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
 
     // Make a title.
-    var title = 'Question: ' + questionType;
+    // var title = 'Question: ' + questionType;
+    var title = ""
 
     // Draw the pie chart!
     this.pie.draw(col, labels, colours, title);
