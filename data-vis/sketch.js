@@ -36,11 +36,11 @@ function draw() {
   strokeWeight(2);
   rect(42, 0, width - 42, height);
   
-
+  // Call constructor
   canvas = new CanvasDesign();
 
   // Draw menu bar at the left of the canvas.
-  canvas.draw_menu_bar(42, 0, 265, height, 0, "#DF1E37");
+  canvas.draw_menu_bar(42, 0, 260, height, 0, "#DF1E37");
 
   // Draw upper rectangle
   canvas.draw_menu_bar(42, 0, width, 100, 0, "#DCDCDC80");
@@ -51,7 +51,17 @@ function draw() {
   let aspect = uol_logo.width / uol_logo.height;
   let targetWidth = targetHeight * aspect;
   image(uol_logo, 75, 15, targetWidth, targetHeight);
-  
+
+  // Draw tittle
+  push();
+  textSize(30);
+  textAlign(LEFT, TOP);
+  textFont('Roboto');
+  fill(255);
+  noStroke();
+  text("ANALYTICS", 88, 160);
+  pop();
+
   if (gallery.selectedVisual != null) {
     gallery.selectedVisual.draw();
   }
