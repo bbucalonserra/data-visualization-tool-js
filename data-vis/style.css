@@ -36,4 +36,5 @@ body{
 .selected{
     background: rgb(255, 255, 255);
     color: #075293;
+    font-weight: 500;
 }

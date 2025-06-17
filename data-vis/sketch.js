@@ -9,7 +9,7 @@ function preload() {
 function setup() {
   // Create a canvas to fill the content div from index.html.
   canvasContainer = select('.app');
-  var c = createCanvas(1400, 800);
+  var c = createCanvas(1400, 800); ////////////////-------------CHANGE TO 1600x800 ?????????????????????????????
   c.parent('app');
 
   // Create a new gallery object.
@@ -36,7 +36,7 @@ function draw() {
   rect(42, 0, width - 42, height);
   
   // Call constructor
-  canvas = new CanvasDesign();
+  canvas = new canvasDesign();
 
   // Draw menu bar at the left of the canvas.
   canvas.draw_menu_bar(42, 0, 260, height, 0, "#C8102E"); 

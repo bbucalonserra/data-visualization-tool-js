@@ -76,6 +76,11 @@ function PayGapTimeSeries() {
     // Find min and max pay gap for mapping to canvas height.
     this.minPayGap = 0;         // Pay equality (zero pay gap).
     this.maxPayGap = max(this.data.getColumn('pay_gap'));
+
+    // Start and end median
+    this.startMedian = this.data.getNum(0, 'median_male');
+    this.endMedian = this.data.getNum(this.data.getRowCount() - 1, 'median_male')
+
   };
 
   this.destroy = function() {
@@ -97,13 +102,13 @@ function PayGapTimeSeries() {
                         this.mapPayGapToHeight.bind(this),
                         0);
 
-    // Draw x and y axis.
-    drawAxis(this.layout);
-
     // Draw x and y axis labels.
     drawAxisLabels(this.xAxisLabel,
                    this.yAxisLabel,
                    this.layout);
+                   
+    // Draw x and y axis.
+    drawAxis(this.layout);
 
     // Plot all pay gaps between startYear and endYear using the width
     // of the canvas minus margins.
@@ -118,13 +123,42 @@ function PayGapTimeSeries() {
       var current = {
         // Convert strings to numbers.
         'year': this.data.getNum(i, 'year'),
-        'payGap': this.data.getNum(i, 'pay_gap')
+        'payGap': this.data.getNum(i, 'pay_gap'),
+        // NEW CODE//
+        'male': this.data.getNum(i, 'median_male'),
+        'female': this.data.getNum(i, 'median_female')
+        // END NEW CODE //
       };
 
       if (previous != null) {
+
+        // Draw the tick label marking the start of the previous year.
+        if (i % xLabelSkip == 0) {
+          drawXAxisTickLabel(previous.year, this.layout,
+                             this.mapYearToWidth.bind(this));
+        }
+//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
+        // Draw bars male
+        fill(0, 100, 200);
+        noStroke();
+        rect(this.mapYearToWidth(current.year) - 10,
+             this.mapMediantoHeight(current.male),
+             20,
+             this.layout.bottomMargin - this.mapMediantoHeight(current.male),
+        );
+
+        // Draw bars female
+        fill(0, 50, 100);
+        noStroke();
+        rect(this.mapYearToWidth(current.year) - 10,
+             this.mapMediantoHeight(current.female),
+             20,
+             this.layout.bottomMargin - this.mapMediantoHeight(current.female),
+        );
+//-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
         // Draw line segment connecting previous year to current
         // year pay gap.
-        stroke(0);
+        stroke(2);
         line(this.mapYearToWidth(previous.year),
              this.mapPayGapToHeight(previous.payGap),
              this.mapYearToWidth(current.year),
@@ -133,12 +167,6 @@ function PayGapTimeSeries() {
         // The number of x-axis labels to skip so that only
         // numXTickLabels are drawn.
         var xLabelSkip = ceil(numYears / this.layout.numXTickLabels);
-
-        // Draw the tick label marking the start of the previous year.
-        if (i % xLabelSkip == 0) {
-          drawXAxisTickLabel(previous.year, this.layout,
-                             this.mapYearToWidth.bind(this));
-        }
       }
 
       // Assign current year to previous year so that it is available
@@ -173,4 +201,19 @@ function PayGapTimeSeries() {
                this.layout.bottomMargin, // Smaller pay gap at bottom.
                this.layout.topMargin);   // Bigger pay gap at top.
   };
+
+      
+//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
+  this.mapMediantoHeight = function(value) {
+    return map(value,
+              this.startMedian,
+              this.endMedian,
+              this.layout.bottomMargin,
+              this.layout.topMargin);
+  };
+
+  this.mapMediantoWidth = function(value) {
+    return 10;
+  };
+//-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
 }
