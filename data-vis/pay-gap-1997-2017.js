@@ -1,14 +1,14 @@
 function PayGapTimeSeries() {
 
   // Name for the visualisation to appear in the menu bar.
-  this.name = 'Pay gap: 1997-2017';
+  this.name = 'Gender Pay GAP';
 
   // Each visualisation must have a unique ID with no special
   // characters.
   this.id = 'pay-gap-timeseries';
 
   // Title to display above the plot.
-  this.title = 'GENDER PAY GAP';
+  this.title = 'Gender Pay GAP chart!';
 
     // Names for each axis.
   this.xAxisLabel = 'year';
@@ -92,8 +92,8 @@ function PayGapTimeSeries() {
       return;
     }
 
-    // Draw the title above the plot.
-    this.drawTitle();
+    //
+    this.drawText();
 
     // Draw all y-axis labels.
     drawYAxisTickLabels(this.minPayGap,
@@ -116,6 +116,9 @@ function PayGapTimeSeries() {
     drawAxisLabels(this.xAxisLabel,
                    this.yAxisLabel,
                    this.layout);
+    
+    // Draw legend
+    drawLegend(1100, 740, "Woman", "Men");
 
     // Plot all pay gaps between startYear and endYear using the width
     // of the canvas minus margins.
@@ -181,6 +184,7 @@ function PayGapTimeSeries() {
         }
       }
 
+//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
       // Assign current year to previous year so that it is available during the next iteration of this loop to give us the start position of the next line segment.
       previous = {
       year: current.year,
@@ -188,9 +192,12 @@ function PayGapTimeSeries() {
       male: current.male,
       female: current.female
       };
+//-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
+
 }
   };
 
+  // REMOVED FUNCTION!!!
   this.drawTitle = function() {
     fill(0);
     noStroke();
@@ -200,7 +207,7 @@ function PayGapTimeSeries() {
 
     text(this.title,
          (this.layout.plotWidth() / 2) + this.layout.leftMargin,
-         this.layout.topMargin - (this.layout.marginSize / 3));
+         this.layout.topMargin - (this.layout.marginSize / 2.6));
   };
 
   this.mapYearToWidth = function(value) {
@@ -227,5 +234,22 @@ function PayGapTimeSeries() {
                this.layout.bottomMargin,
                this.layout.topMargin);
   };
+
+  this.drawText = function() {
+    // Draw user message
+    let message_pay_gap = "Check out the "
+
+    push();
+    textSize(30);
+    textAlign(LEFT, TOP);
+    textFont(robotoFont);
+    fill(0);
+    noStroke();
+    text(message_pay_gap, 440, 137.5);
+    textFont(robotoFontBold);
+    text(this.title, 612, 137.5)
+    pop();
+    }
+
 //-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
 }

@@ -8,7 +8,9 @@ let menuTop;
 
 function preload() {
   uol_logo = loadImage('assets/uol_logo.png');
+  user_logo = loadImage('assets/user_logo.png')
   robotoFont = loadFont('assets/roboto_font/Roboto_Condensed-Regular.ttf');
+  robotoFontBold = loadFont('assets/roboto_font/Roboto_Condensed-Bold.ttf');
 }
 
 function setup() {
@@ -28,10 +30,10 @@ function setup() {
   textFont(robotoFont);
 
   // Add the visualisation objects here.
+  gallery.addVisual(new PayGapTimeSeries());
   gallery.addVisual(new TechDiversityRace());
   gallery.addVisual(new TechDiversityGender());
   gallery.addVisual(new PayGapByJob2017());
-  gallery.addVisual(new PayGapTimeSeries());
   gallery.addVisual(new ClimateChange());
   gallery.addVisual(new UKFoodAttitudes());
   gallery.addVisual(new NutrientsTimeSeries());
@@ -47,8 +49,8 @@ function draw() {
   // First layer of canvas background
   canvas.draw_canvas_background(menuLeft.x + menuLeft.w, menuTop.h, width, menuTop.w, 0, "#F2F2F2");
 
-  // Second layer for charts
-  canvas.draw_canvas_background(menuLeft.x + menuLeft.w + 60, menuTop.h + 100, width - 420, menuTop.w - 840, 20, 255);
+  // Second layer for charts (white)
+  canvas.draw_canvas_background(menuLeft.x + menuLeft.w + 60, menuTop.h + 110, width - 420, menuTop.w - 835, 20, 255);
 
   // Draw borders into the canvas.
   canvas.draw_canvas_borders(menuLeft.x, 0, width - menuLeft.x, height, 2, 0);
@@ -70,13 +72,20 @@ function draw() {
   push();
   textSize(30);
   textAlign(LEFT, TOP);
-  textFont("Roboto Condensed");
+  textFont(robotoFontBold);
   fill(255);
   noStroke();
-  text("ANALYTICS", 88, 150);
+  text("MENU BAR", 103, 150);
   pop();
 
   if (gallery.selectedVisual != null) {
+    // Select visuals
     gallery.selectedVisual.draw();
+
+    // Draw user image
+    image(user_logo, menuLeft.x + menuLeft.w + 60, 120, 65, 65);
+  }
+  else {
+    drawHomeScreen();
   }
 }

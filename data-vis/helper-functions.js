@@ -61,7 +61,6 @@ function drawAxis(layout, colour=0, threeAxis=false) {
        layout.leftMargin,
        layout.bottomMargin);
 
-//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
   // y2-axis
   line(layout.rightMargin,
        layout.topMargin,
@@ -187,4 +186,22 @@ function drawXAxisTickLabel(value, layout, mapFunction) {
          x,
          layout.bottomMargin);
   }
+}
+
+function drawLegend(xPos, yPos, labelText1, labelText2) {
+  textFont(robotoFont);
+  textAlign(LEFT, CENTER);
+  textSize(16);
+  noFill();
+  noStroke();
+
+  fill('#C8102E');
+  rect(xPos, yPos, 15, 15, 3);
+  fill(0);
+  text(labelText1, xPos + 25, yPos + 6);
+
+  fill('#002147');
+  rect(xPos + 120, yPos, 15, 15, 3);
+  fill(0);
+  text(labelText2, xPos + 145, yPos + 6);
 }
