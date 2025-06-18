@@ -1,5 +1,5 @@
 body{
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 .menu-item { /*Items from the menu*/
@@ -10,7 +10,7 @@ body{
     list-style-type: none;
     padding: 5px;
     color: white;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 .visuals-menu {
@@ -24,7 +24,7 @@ body{
     padding: 20px;
 }
 
-.container {
+.container {    
   display: flex;
 }
 
@@ -34,7 +34,7 @@ body{
 }
 
 .selected{
-    background: rgb(255, 255, 255);
+    background: #F2F2F2;
     color: #075293;
     font-weight: 500;
 }

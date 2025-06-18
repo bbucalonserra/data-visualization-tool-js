@@ -2,18 +2,30 @@
 // a container for all the visualisations.
 var gallery;
 
+// Definig global variables for 
+let menuLeft;
+let menuTop;
+
 function preload() {
   uol_logo = loadImage('assets/uol_logo.png');
+  robotoFont = loadFont('assets/roboto_font/Roboto_Condensed-Regular.ttf');
 }
 
 function setup() {
   // Create a canvas to fill the content div from index.html.
   canvasContainer = select('.app');
-  var c = createCanvas(1400, 800); ////////////////-------------CHANGE TO 1600x800 ?????????????????????????????
+  var c = createCanvas(1400, 800);
   c.parent('app');
 
   // Create a new gallery object.
   gallery = new Gallery();
+
+  // Margins
+  menuLeft = {x: 42, y: 0, w: 260, h: height};
+  menuTop  = {x: 42, y: 0, w: width, h: 100};
+
+  // Font
+  textFont(robotoFont);
 
   // Add the visualisation objects here.
   gallery.addVisual(new TechDiversityRace());
@@ -26,23 +38,26 @@ function setup() {
 }
 
 function draw() {
-
-  background(255);
-  
-  // Draw borders into the canvas.
-  noFill();
-  stroke(0);
-  strokeWeight(2);
-  rect(42, 0, width - 42, height);
-  
-  // Call constructor
+  // Call constructor.
   canvas = new canvasDesign();
 
+  // Entire canvas background
+  background(255);
+
+  // First layer of canvas background
+  canvas.draw_canvas_background(menuLeft.x + menuLeft.w, menuTop.h, width, menuTop.w, 0, "#F2F2F2");
+
+  // Second layer for charts
+  canvas.draw_canvas_background(menuLeft.x + menuLeft.w + 60, menuTop.h + 100, width - 420, menuTop.w - 840, 20, 255);
+
+  // Draw borders into the canvas.
+  canvas.draw_canvas_borders(menuLeft.x, 0, width - menuLeft.x, height, 2, 0);
+
   // Draw menu bar at the left of the canvas.
-  canvas.draw_menu_bar(42, 0, 260, height, 0, "#C8102E"); 
+  canvas.draw_menu_bar(menuLeft.x, menuLeft.y, menuLeft.w, menuLeft.h, 0, "#C8102E"); 
 
   // Draw upper rectangle
-  canvas.draw_menu_bar(42, 0, width, 100, 0, "#DCDCDC80");
+  canvas.draw_menu_bar(menuTop.x, menuTop.y, menuTop.w, menuTop.h, 0, "#C7C7C795");
 
   // Draw image
   // Fix proportions
@@ -55,7 +70,7 @@ function draw() {
   push();
   textSize(30);
   textAlign(LEFT, TOP);
-  textFont('Roboto');
+  textFont("Roboto Condensed");
   fill(255);
   noStroke();
   text("ANALYTICS", 88, 150);

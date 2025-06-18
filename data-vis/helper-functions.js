@@ -43,9 +43,12 @@ function stringsToNumbers (array) {
 // Plotting helper functions
 // --------------------------------------------------------------------
 
-function drawAxis(layout, colour=0) {
+//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
+function drawAxis(layout, colour=0, threeAxis=false) {
   stroke(color(colour));
+  strokeWeight(1);
 
+  if (threeAxis) {
   // x-axis
   line(layout.leftMargin,
        layout.bottomMargin,
@@ -57,22 +60,48 @@ function drawAxis(layout, colour=0) {
        layout.topMargin,
        layout.leftMargin,
        layout.bottomMargin);
+
+//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
+  // y2-axis
+  line(layout.rightMargin,
+       layout.topMargin,
+       layout.rightMargin,
+       layout.bottomMargin);
+       
+//-------------------------------------------------------------------------- END NEW CODE ----------------------------------------------------------------------------//
+
+  }
+  else {
+   // x-axis
+  line(layout.leftMargin,
+       layout.bottomMargin,
+       layout.rightMargin,
+       layout.bottomMargin);
+
+  // y-axis
+  line(layout.leftMargin,
+       layout.topMargin,
+       layout.leftMargin,
+       layout.bottomMargin);   
+  }
 }
 
 function drawAxisLabels(xLabel, yLabel, layout) {
   fill(0);
   noStroke();
   textAlign('center', 'center');
+  textFont(robotoFont);
+  textSize(16);
 
   // Draw x-axis label.
   text(xLabel,
        (layout.plotWidth() / 2) + layout.leftMargin,
-       layout.bottomMargin + (layout.marginSize * 1.5));
+       layout.bottomMargin + (layout.marginSize * 0.25));
 
   // Draw y-axis label.
   push();
-  translate(layout.leftMargin - (layout.marginSize * 1.5),
-            layout.bottomMargin / 2);
+  translate(layout.leftMargin - (layout.marginSize * 0.3),
+            layout.bottomMargin / 1.45);
   rotate(- PI / 2);
   text(yLabel, 0, 0);
   pop();
@@ -87,6 +116,8 @@ function drawYAxisTickLabels(min, max, layout, mapFunction,
   fill(0);
   noStroke();
   textAlign('right', 'center');
+  textFont(robotoFont);
+  textSize(16);
 
   // Draw all axis tick labels and grid lines.
   for (i = 0; i <= layout.numYTickLabels; i++) {
@@ -101,10 +132,37 @@ function drawYAxisTickLabels(min, max, layout, mapFunction,
     if (layout.grid) {
       // Add grid line.
       stroke(200);
+      strokeWeight(1);
       line(layout.leftMargin, y, layout.rightMargin, y);
     }
   }
 }
+
+//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
+function drawY2AxisTickLabels(min, max, layout, mapFunction,
+                             decimalPlaces) {
+  // Map function must be passed with .bind(this).
+  var range = max - min;
+  var yTickStep = range / layout.numYTickLabels;
+
+  fill(0);
+  noStroke();
+  textAlign('right', 'center');
+  textFont(robotoFont);
+  textSize(16);
+
+  // Draw all axis tick labels
+  for (i = 0; i <= layout.numYTickLabels; i++) {
+    var value = min + (i * yTickStep);
+    var y = mapFunction(value);
+
+    // Add tick label.
+    text(value.toFixed(decimalPlaces),
+         layout.rightMargin + 4 * layout.pad,
+         y);
+  }
+}
+//-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
 
 function drawXAxisTickLabel(value, layout, mapFunction) {
   // Map function must be passed with .bind(this).
@@ -113,15 +171,17 @@ function drawXAxisTickLabel(value, layout, mapFunction) {
   fill(0);
   noStroke();
   textAlign('center', 'center');
+  textFont(robotoFont);
 
   // Add tick label.
   text(value,
        x,
-       layout.bottomMargin + layout.marginSize / 2);
+       layout.bottomMargin + layout.marginSize / 8);
 
   if (layout.grid) {
     // Add grid line.
     stroke(220);
+    strokeWeight(1);
     line(x,
          layout.topMargin,
          x,

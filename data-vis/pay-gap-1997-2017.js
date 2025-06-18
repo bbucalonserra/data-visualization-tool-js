@@ -1,22 +1,21 @@
 function PayGapTimeSeries() {
 
-  x_offset = 100;
-
   // Name for the visualisation to appear in the menu bar.
-  this.name = 'Pay GAP TimeSeries';
+  this.name = 'Pay gap: 1997-2017';
 
   // Each visualisation must have a unique ID with no special
   // characters.
   this.id = 'pay-gap-timeseries';
 
   // Title to display above the plot.
-  this.title = 'Gender Pay Gap: Average difference between male and female pay.';
+  this.title = 'GENDER PAY GAP';
 
     // Names for each axis.
   this.xAxisLabel = 'year';
   this.yAxisLabel = '%';
 
-  var marginSize = 35;
+  // Define margin 
+  var marginSize = 140;
 
   // Layout object to store all common plot layout parameters and
   // methods.
@@ -25,10 +24,10 @@ function PayGapTimeSeries() {
 
     // Locations of margin positions. Left and bottom have double margin
     // size due to axis and tick labels.
-    leftMargin: marginSize + 3.8 * x_offset,
-    rightMargin: width - marginSize - x_offset,
-    topMargin: marginSize + x_offset * 2,
-    bottomMargin: height - marginSize * 4,
+    leftMargin: marginSize * 3.2,
+    rightMargin: width - marginSize,
+    topMargin: marginSize * 2,
+    bottomMargin: height - marginSize * 0.8,
     pad: 5,
 
     plotWidth: function() {
@@ -40,7 +39,7 @@ function PayGapTimeSeries() {
     },
 
     // Boolean to enable/disable background grid.
-    grid: true,
+    grid: false,
 
     // Number of axis tick labels to draw so that they are not drawn on
     // top of one another.
@@ -77,10 +76,11 @@ function PayGapTimeSeries() {
     this.minPayGap = 0;         // Pay equality (zero pay gap).
     this.maxPayGap = max(this.data.getColumn('pay_gap'));
 
-    // Start and end median
-    this.startMedian = this.data.getNum(0, 'median_male');
-    this.endMedian = this.data.getNum(this.data.getRowCount() - 1, 'median_male')
-
+    // Find min and max average per gender
+    this.minMedian = 0;
+    this.maxMedianMale = max(this.data.getColumn('median_male'));
+    this.maxMedianFemale = max(this.data.getColumn('median_female'));
+    this.maxMedian = max(this.maxMedianMale, this.maxMedianFemale);
   };
 
   this.destroy = function() {
@@ -102,13 +102,20 @@ function PayGapTimeSeries() {
                         this.mapPayGapToHeight.bind(this),
                         0);
 
+    // Draw all y-axis labels.
+    drawY2AxisTickLabels(this.minMedian,
+                         this.maxMedian,
+                         this.layout,
+                         this.mapMedianToHeight.bind(this),
+                         0);
+
+    // Draw x and y axis.
+    drawAxis(this.layout, 0, true);
+
     // Draw x and y axis labels.
     drawAxisLabels(this.xAxisLabel,
                    this.yAxisLabel,
                    this.layout);
-                   
-    // Draw x and y axis.
-    drawAxis(this.layout);
 
     // Plot all pay gaps between startYear and endYear using the width
     // of the canvas minus margins.
@@ -124,66 +131,76 @@ function PayGapTimeSeries() {
         // Convert strings to numbers.
         'year': this.data.getNum(i, 'year'),
         'payGap': this.data.getNum(i, 'pay_gap'),
-        // NEW CODE//
-        'male': this.data.getNum(i, 'median_male'),
+//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
+        'male': this.data.getNum(i, 'median_male'), // First attribute is row, second is column. So: row i, column median_male.
         'female': this.data.getNum(i, 'median_female')
-        // END NEW CODE //
+//-------------------------------------------------------------------------- END NEW CODE ----------------------------------------------------------------------------//
       };
 
       if (previous != null) {
-
-        // Draw the tick label marking the start of the previous year.
-        if (i % xLabelSkip == 0) {
-          drawXAxisTickLabel(previous.year, this.layout,
-                             this.mapYearToWidth.bind(this));
-        }
 //-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
-        // Draw bars male
-        fill(0, 100, 200);
-        noStroke();
-        rect(this.mapYearToWidth(current.year) - 10,
-             this.mapMediantoHeight(current.male),
-             20,
-             this.layout.bottomMargin - this.mapMediantoHeight(current.male),
-        );
+        if (current.year != 2017) { // NOT DRAWING YEAR 2017 FOR BETTER VISUALIZATION!
 
-        // Draw bars female
-        fill(0, 50, 100);
-        noStroke();
-        rect(this.mapYearToWidth(current.year) - 10,
-             this.mapMediantoHeight(current.female),
-             20,
-             this.layout.bottomMargin - this.mapMediantoHeight(current.female),
-        );
+          let barWidth = 25;
+        // Draw bars male
+          fill('#002147');
+          noStroke();
+          rect(this.mapYearToWidth(current.year) - barWidth/2,
+              this.mapMedianToHeight(current.male),
+              barWidth,
+              this.layout.bottomMargin - this.mapMedianToHeight(current.male));
+
+          // Draw bars female
+          fill('#C8102E');
+          noStroke();
+          rect(this.mapYearToWidth(current.year) - barWidth/2,
+              this.mapMedianToHeight(current.female),
+              barWidth,
+              this.layout.bottomMargin - this.mapMedianToHeight(current.female));
+        
 //-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
-        // Draw line segment connecting previous year to current
-        // year pay gap.
-        stroke(2);
-        line(this.mapYearToWidth(previous.year),
-             this.mapPayGapToHeight(previous.payGap),
-             this.mapYearToWidth(current.year),
-             this.mapPayGapToHeight(current.payGap));
+
+          // Draw line segment connecting previous year to current
+          // year pay gap.
+          stroke(0);
+          strokeWeight(5);
+          line(this.mapYearToWidth(previous.year),
+              this.mapPayGapToHeight(previous.payGap),
+              this.mapYearToWidth(current.year),
+              this.mapPayGapToHeight(current.payGap));
+        }
 
         // The number of x-axis labels to skip so that only
         // numXTickLabels are drawn.
         var xLabelSkip = ceil(numYears / this.layout.numXTickLabels);
+
+        // Draw the tick label marking the start of the previous year.
+        if (i % xLabelSkip == 0) {
+          drawXAxisTickLabel(previous.year, this.layout,
+          this.mapYearToWidth.bind(this));
+        }
       }
 
-      // Assign current year to previous year so that it is available
-      // during the next iteration of this loop to give us the start
-      // position of the next line segment.
-      previous = current;
-    }
+      // Assign current year to previous year so that it is available during the next iteration of this loop to give us the start position of the next line segment.
+      previous = {
+      year: current.year,
+      payGap: current.payGap,
+      male: current.male,
+      female: current.female
+      };
+}
   };
 
   this.drawTitle = function() {
     fill(0);
     noStroke();
     textAlign('center', 'center');
+    textFont(robotoFont);
+    textSize(34);
 
     text(this.title,
          (this.layout.plotWidth() / 2) + this.layout.leftMargin,
-         this.layout.topMargin - (this.layout.marginSize / 2));
+         this.layout.topMargin - (this.layout.marginSize / 3));
   };
 
   this.mapYearToWidth = function(value) {
@@ -202,18 +219,13 @@ function PayGapTimeSeries() {
                this.layout.topMargin);   // Bigger pay gap at top.
   };
 
-      
 //-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
-  this.mapMediantoHeight = function(value) {
+  this.mapMedianToHeight = function(value) {
     return map(value,
-              this.startMedian,
-              this.endMedian,
-              this.layout.bottomMargin,
-              this.layout.topMargin);
-  };
-
-  this.mapMediantoWidth = function(value) {
-    return 10;
+               this.minMedian,
+               this.maxMedian,
+               this.layout.bottomMargin,
+               this.layout.topMargin);
   };
 //-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
 }
