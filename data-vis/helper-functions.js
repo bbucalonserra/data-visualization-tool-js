@@ -85,7 +85,7 @@ function drawAxis(layout, colour=0, threeAxis=false) {
   }
 }
 
-function drawAxisLabels(xLabel, yLabel, layout) {
+function drawAxisLabels(xLabel, y1Label, y2Label="", layout) {
   fill(0);
   noStroke();
   textAlign('center', 'center');
@@ -102,8 +102,18 @@ function drawAxisLabels(xLabel, yLabel, layout) {
   translate(layout.leftMargin - (layout.marginSize * 0.3),
             layout.bottomMargin / 1.45);
   rotate(- PI / 2);
-  text(yLabel, 0, 0);
+  text(y1Label, 0, 0);
   pop();
+
+  if (y2Label != "") {
+    // Draw y2-axis label.
+    push();
+    translate(layout.rightMargin - (layout.marginSize * 0.3),
+              layout.bottomMargin / 1.45);
+    rotate(- PI / 2);
+    text(y2Label, 0, 80);
+    pop(); 
+  }
 }
 
 function drawYAxisTickLabels(min, max, layout, mapFunction,

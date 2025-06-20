@@ -1,6 +1,6 @@
 function drawHomeScreen() {
     // Draw user message
-    image(user_logo, menuLeft.x + menuLeft.w + 220, 400, 200, 200);
+    image(user_logo, menuLeft.x + menuLeft.w + 225, 380, 200, 200);
     let welcome_message = "Welcome,"
     let user_message = "user!"
     let user_message2 = "Check the red menu bar on the left"
@@ -12,12 +12,11 @@ function drawHomeScreen() {
     textFont(robotoFontBold);
     fill(0);
     noStroke();
-    text(welcome_message, 750, 420);
+    text(welcome_message, 750, 400);
     textFont(robotoFont);
-    text(user_message, 990, 420);
+    text(user_message, 990, 400);
     textSize(30);
-    text(user_message2, 750, 490);
-    text(user_message3, 750, 530); 
+    text(user_message2, 750, 470);
+    text(user_message3, 750, 510); 
     pop();
 }
- 

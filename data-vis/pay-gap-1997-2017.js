@@ -11,8 +11,9 @@ function PayGapTimeSeries() {
   this.title = 'Gender Pay GAP chart!';
 
     // Names for each axis.
-  this.xAxisLabel = 'year';
-  this.yAxisLabel = '%';
+  this.xAxisLabel = "Year";
+  this.y1AxisLabel = "Percentage of GAP";
+  this.y2AxisLabel = "Median per Gender"
 
   // Define margin 
   var marginSize = 140;
@@ -81,6 +82,9 @@ function PayGapTimeSeries() {
     this.maxMedianMale = max(this.data.getColumn('median_male'));
     this.maxMedianFemale = max(this.data.getColumn('median_female'));
     this.maxMedian = max(this.maxMedianMale, this.maxMedianFemale);
+
+    // Create variable do draw bars and line smoothly
+    this.animationProgress = 0;
   };
 
   this.destroy = function() {
@@ -114,7 +118,8 @@ function PayGapTimeSeries() {
 
     // Draw x and y axis labels.
     drawAxisLabels(this.xAxisLabel,
-                   this.yAxisLabel,
+                   this.y1AxisLabel,
+                   this.y2AxisLabel,
                    this.layout);
     
     // Draw legend
@@ -143,25 +148,27 @@ function PayGapTimeSeries() {
       if (previous != null) {
 //-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
         if (current.year != 2017) { // NOT DRAWING YEAR 2017 FOR BETTER VISUALIZATION!
-
           let barWidth = 25;
-        // Draw bars male
+          
+          // Draw animation progress for bar
+          this.animationProgress += 0.0010;
+          this.animationProgress = min(this.animationProgress, 1);
+
+          // Draw bars male
           fill('#002147');
           noStroke();
           rect(this.mapYearToWidth(current.year) - barWidth/2,
-              this.mapMedianToHeight(current.male),
-              barWidth,
-              this.layout.bottomMargin - this.mapMedianToHeight(current.male));
+               this.layout.bottomMargin,
+               barWidth,
+               -(this.layout.bottomMargin - this.mapMedianToHeight(current.male)) * this.animationProgress)
 
           // Draw bars female
           fill('#C8102E');
           noStroke();
           rect(this.mapYearToWidth(current.year) - barWidth/2,
-              this.mapMedianToHeight(current.female),
+              this.layout.bottomMargin,
               barWidth,
-              this.layout.bottomMargin - this.mapMedianToHeight(current.female));
-        
-//-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
+              -(this.layout.bottomMargin - this.mapMedianToHeight(current.female)) * this.animationProgress);
 
           // Draw line segment connecting previous year to current
           // year pay gap.
@@ -172,6 +179,7 @@ function PayGapTimeSeries() {
               this.mapYearToWidth(current.year),
               this.mapPayGapToHeight(current.payGap));
         }
+//-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
 
         // The number of x-axis labels to skip so that only
         // numXTickLabels are drawn.
@@ -250,6 +258,5 @@ function PayGapTimeSeries() {
     text(this.title, 612, 137.5)
     pop();
     }
-
 //-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
 }
