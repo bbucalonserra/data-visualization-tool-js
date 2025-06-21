@@ -19,8 +19,7 @@ function NutrientsTimeSeries() {
 
   var marginSize = 35;
 
-  // Layout object to store all common plot layout parameters and
-  // methods.
+  // Layout object to store all common plot layout parameters and methods.
   this.layout = {
     marginSize: marginSize,
 
@@ -43,8 +42,7 @@ function NutrientsTimeSeries() {
     // Boolean to enable/disable background grid.
     grid: true,
 
-    // Number of axis tick labels to draw so that they are not drawn on
-    // top of one another.
+    // Number of axis tick labels to draw so that they are not drawn on top of one another.
     numXTickLabels: 10,
     numYTickLabels: 8,
   };
@@ -52,8 +50,7 @@ function NutrientsTimeSeries() {
   // Property to represent whether data has been loaded.
   this.loaded = false;
 
-  // Preload the data. This function is called automatically by the
-  // gallery when a visualisation is added.
+  // Preload the data. This function is called automatically by the gallery when a visualisation is added.
   this.preload = function() {
     var self = this;
     this.data = loadTable(
@@ -113,13 +110,11 @@ function NutrientsTimeSeries() {
                    this.y2AxisLabel,
                    this.layout);
 
-    // Plot all pay gaps between startYear and endYear using the width
-    // of the canvas minus margins.
+    // Plot all pay gaps between startYear and endYear using the width of the canvas minus margins.
     var previous;
     var numYears = this.endYear - this.startYear;
 
-    // Loop over all rows and draw a line from the previous value to
-    // the current.
+    // Loop over all rows and draw a line from the previous value to the current.
     for (var i = 0; i < this.data.getRowCount(); i++) {
 
       let row = this.data.getRow(i);
@@ -156,9 +151,7 @@ function NutrientsTimeSeries() {
           fill(this.colors[i]);
           text(l, 630, this.mapPayGapToHeight(current.value))
         }
-      // Assign current year to previous year so that it is available
-      // during the next iteration of this loop to give us the start
-      // position of the next line segment.
+      // Assign current year to previous year so that it is available during the next iteration of this loop to give us the start position of the next line segment.
       previous = current;
       }
     }

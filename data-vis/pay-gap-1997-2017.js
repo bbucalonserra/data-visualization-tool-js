@@ -3,14 +3,13 @@ function PayGapTimeSeries() {
   // Name for the visualisation to appear in the menu bar.
   this.name = 'Gender Pay GAP';
 
-  // Each visualisation must have a unique ID with no special
-  // characters.
+  // Each visualisation must have a unique ID with no special characters.
   this.id = 'pay-gap-timeseries';
 
   // Title to display above the plot.
   this.title = 'Gender Pay GAP chart!';
 
-    // Names for each axis.
+  // Names for each axis.
   this.xAxisLabel = "Year";
   this.y1AxisLabel = "Percentage of GAP";
   this.y2AxisLabel = "Median per Gender"
@@ -18,13 +17,11 @@ function PayGapTimeSeries() {
   // Define margin 
   var marginSize = 140;
 
-  // Layout object to store all common plot layout parameters and
-  // methods.
+  // Layout object to store all common plot layout parameters and methods.
   this.layout = {
     marginSize: marginSize,
 
-    // Locations of margin positions. Left and bottom have double margin
-    // size due to axis and tick labels.
+    // Locations of margin positions. Left and bottom have double margin size due to axis and tick labels.
     leftMargin: marginSize * 3.2,
     rightMargin: width - marginSize,
     topMargin: marginSize * 2,
@@ -42,8 +39,7 @@ function PayGapTimeSeries() {
     // Boolean to enable/disable background grid.
     grid: false,
 
-    // Number of axis tick labels to draw so that they are not drawn on
-    // top of one another.
+    // Number of axis tick labels to draw so that they are not drawn on top of one another.
     numXTickLabels: 10,
     numYTickLabels: 8,
   };
@@ -51,8 +47,7 @@ function PayGapTimeSeries() {
   // Property to represent whether data has been loaded.
   this.loaded = false;
 
-  // Preload the data. This function is called automatically by the
-  // gallery when a visualisation is added.
+  // Preload the data. This function is called automatically by the gallery when a visualisation is added.
   this.preload = function() {
     var self = this;
     this.data = loadTable(
@@ -128,13 +123,11 @@ function PayGapTimeSeries() {
     {text: "Men", color: '#002147'}
     ]);
 
-    // Plot all pay gaps between startYear and endYear using the width
-    // of the canvas minus margins.
+    // Plot all pay gaps between startYear and endYear using the width of the canvas minus margins.
     var previous;
     var numYears = this.endYear - this.startYear;
 
-    // Loop over all rows and draw a line from the previous value to
-    // the current.
+    // Loop over all rows and draw a line from the previous value to the current.
     for (var i = 0; i < this.data.getRowCount(); i++) {
 
       // Create an object to store data for the current year.

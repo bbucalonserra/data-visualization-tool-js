@@ -1,8 +1,7 @@
-// Global variable to store the gallery object. The gallery object is
-// a container for all the visualisations.
-var gallery;
+// Global variable to store the gallery object. The gallery object is a container for all the visualisations.
+let gallery;
 
-// Definig global variables for 
+// Definig global variables for menu left and top
 let menuLeft;
 let menuTop;
 
@@ -50,7 +49,7 @@ function setup() {
 }
 
 function draw() {
-  // Call constructor.
+  // Call constructors.
   canvas = new canvasDesign();
 
   // Entire canvas background
@@ -77,9 +76,6 @@ function draw() {
   let targetWidth = targetHeight * aspect;
   image(uol_logo, 75, 15, targetWidth, targetHeight);
 
-  // Draw icon for each visual
-
-
   // Draw tittle
   push();
   textSize(30);
@@ -98,6 +94,6 @@ function draw() {
     image(user_logo, menuLeft.x + menuLeft.w + 60, 106, 65, 65);
   }
   else {
-    drawHomeScreen();
+    canvas.drawHomeScreen();
   }
 }
