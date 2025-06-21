@@ -96,7 +96,7 @@ function PayGapTimeSeries() {
       return;
     }
 
-    //
+    // Draw text
     this.drawText();
 
     // Draw all y-axis labels.
@@ -123,7 +123,10 @@ function PayGapTimeSeries() {
                    this.layout);
     
     // Draw legend
-    drawLegend(1100, 740, "Woman", "Men");
+    this.drawLegend(1100, 740, [
+    {text: "Woman", color: '#C8102E'},
+    {text: "Men", color: '#002147'}
+    ]);
 
     // Plot all pay gaps between startYear and endYear using the width
     // of the canvas minus margins.
@@ -253,10 +256,45 @@ function PayGapTimeSeries() {
     textFont(robotoFont);
     fill(0);
     noStroke();
-    text(message_pay_gap, 440, 137.5);
+    text(message_pay_gap, 440, 125.5);
     textFont(robotoFontBold);
-    text(this.title, 612, 137.5)
+    text(this.title, 612, 125.5)
     pop();
     }
+
+  this.drawLegend = function(xPos, yPos, labels) {
+  // How to use:
+  //   draw5Legend(100, 50, [
+  //   { text: "Always", color: '#C8102E' },
+  //   { text: "Often", color: '#002147' },
+  //   { text: "Sometimes", color: '#FFCD6E' },
+  //   { text: "Rarely", color: '#333333' },
+  //   { text: "Never", color: '#91A7D2' }
+  // ]);
+
+
+  // Space per block
+  let spacing = 145;
+  let boxSize = 15;
+
+  // Font
+  textFont(robotoFont);
+  textAlign(LEFT, CENTER);
+  textSize(16);
+  noStroke();
+
+  for (let i = 0; i < labels.length; i++) {
+    // 
+    let currentX = xPos + i * spacing;
+
+    // 
+    fill(labels[i].color);
+    rect(currentX, yPos, boxSize, boxSize, 3);
+
+    // 
+    fill(0);
+    text(labels[i].text, currentX + boxSize + 10, yPos + boxSize / 2);
+  }
+  }
 //-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
 }

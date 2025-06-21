@@ -12,7 +12,8 @@ function NutrientsTimeSeries() {
 
     // Names for each axis.
   this.xAxisLabel = 'year';
-  this.yAxisLabel = 'Values';
+  this.y1AxisLabel = 'Values';
+  this.y2AxisLabel = "";
 
   this.colors = [];
 
@@ -108,7 +109,8 @@ function NutrientsTimeSeries() {
 
     // Draw x and y axis labels.
     drawAxisLabels(this.xAxisLabel,
-                   this.yAxisLabel,
+                   this.y1AxisLabel,
+                   this.y2AxisLabel,
                    this.layout);
 
     // Plot all pay gaps between startYear and endYear using the width

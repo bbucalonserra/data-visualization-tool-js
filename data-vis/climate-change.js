@@ -9,7 +9,8 @@ function ClimateChange() {
 
   // Names for each axis.
   this.xAxisLabel = 'year';
-  this.yAxisLabel = '℃';
+  this.y1AxisLabel = '℃';
+  this.y2AxisLabel = "";
 
   var marginSize = 35;
 
@@ -124,7 +125,8 @@ function ClimateChange() {
 
     // Draw x and y axis labels.
     drawAxisLabels(this.xAxisLabel,
-                   this.yAxisLabel,
+                   this.y1AxisLabel,
+                   this.y2AxisLabel,
                    this.layout);
 
     // Plot average line.
