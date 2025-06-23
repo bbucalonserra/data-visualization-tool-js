@@ -198,6 +198,7 @@ function drawXAxisTickLabel(value, layout, mapFunction) {
   }
 }
 
+//-------------------------------------------------------------------------- START NEW CODE ----------------------------------------------------------------------------//
 function draw2Legend(xPos, yPos, labelText1, labelText2) {
   textFont(robotoFont);
   textAlign(LEFT, CENTER);
@@ -240,4 +241,4 @@ function drawLegend(xPos, yPos, labels) {
     text(labels[i].text, currentX + boxSize + 10, yPos + boxSize / 2);
   }
 }
-
+//-------------------------------------------------------------------------- END NEW CODE ----------------------------------------------------------------------------//

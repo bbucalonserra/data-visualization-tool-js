@@ -1,3 +1,4 @@
+//-------------------------------------------------------------------------- START NEW CODE ----------------------------------------------------------------------------//
 function NutrientsTimeSeries() {
 
   // Name for the visualisation to appear in the menu bar.
@@ -183,3 +184,4 @@ function NutrientsTimeSeries() {
                this.layout.topMargin);   // Bigger pay gap at top.
   };
 }
+//-------------------------------------------------------------------------- END NEW CODE ----------------------------------------------------------------------------//

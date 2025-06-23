@@ -1,6 +1,7 @@
 // Global variable to store the gallery object. The gallery object is a container for all the visualisations.
 let gallery;
 
+//-------------------------------------------------------------------------- START NEW CODE ----------------------------------------------------------------------------//
 // Definig global variables for menu left and top
 let menuLeft;
 let menuTop;
@@ -23,6 +24,7 @@ function preload() {
   robotoFont = loadFont('assets/roboto_font/Roboto_Condensed-Regular.ttf');
   robotoFontBold = loadFont('assets/roboto_font/Roboto_Condensed-Bold.ttf');
 }
+//-------------------------------------------------------------------------- END NEW CODE ----------------------------------------------------------------------------//
 
 function setup() {
   // Create a canvas to fill the content div from index.html.
@@ -33,12 +35,15 @@ function setup() {
   // Create a new gallery object.
   gallery = new Gallery();
 
+//-------------------------------------------------------------------------- START NEW CODE ----------------------------------------------------------------------------//
   // Margins
   menuLeft = {x: 42, y: 0, w: 260, h: height};
   menuTop  = {x: 42, y: 0, w: width, h: 100};
 
   // Font
   textFont(robotoFont);
+
+//-------------------------------------------------------------------------- END NEW CODE ----------------------------------------------------------------------------//
 
   // Add the visualisation objects here.
   gallery.addVisual(new PayGapTimeSeries());
@@ -52,6 +57,7 @@ function setup() {
 }
 
 function draw() {
+//-------------------------------------------------------------------------- START NEW CODE ----------------------------------------------------------------------------//
   // Call constructors.
   canvas = new canvasDesign();
 
@@ -101,3 +107,4 @@ function draw() {
     canvas.drawHomeScreen();
   }
 }
+//-------------------------------------------------------------------------- END NEW CODE ----------------------------------------------------------------------------//

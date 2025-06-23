@@ -1,3 +1,4 @@
+/*-------------------------------------------------------------------------- START NEW CODE ----------------------------------------------------------------------------*/
 function UKFoodAttitudes() {
 
   // Name for the visualisation to appear in the menu bar.
@@ -67,7 +68,6 @@ function UKFoodAttitudes() {
     // Copy the row labels from the table (the first item of each row).
     var labels = this.data.getColumn(0);
 
-//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
     // Colour to use for each category.
     let colours = [
       color('#002147'), // Royal Blue
@@ -76,7 +76,6 @@ function UKFoodAttitudes() {
       color('#007A33'), // Emerald Green
       color('#4B0082') // Deep Purple
     ];
-//-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
 
     // Make a title.
     // var title = 'Question: ' + questionType;
@@ -86,3 +85,4 @@ function UKFoodAttitudes() {
     this.pie.draw(col, labels, colours, title);
   };
 }
+//-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
