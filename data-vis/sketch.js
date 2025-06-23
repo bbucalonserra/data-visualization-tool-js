@@ -5,6 +5,9 @@ let gallery;
 let menuLeft;
 let menuTop;
 
+// Acessability
+let accessibilityMode = false;
+
 function preload() {
   // Load images
   uol_logo = loadImage('assets/uol_logo.png');
@@ -65,7 +68,8 @@ function draw() {
   canvas.draw_canvas_borders(menuLeft.x, 0, width - menuLeft.x, height, 2, 0);
 
   // Draw menu bar at the left of the canvas.
-  canvas.draw_menu_bar(menuLeft.x, menuLeft.y, menuLeft.w, menuLeft.h, 0, "#C8102E"); 
+  canvas.draw_menu_bar(menuLeft.x, menuLeft.y, menuLeft.w, menuLeft.h, 0, "#C8102E");  
+  // canvas.draw_menu_bar(menuLeft.x, menuLeft.y, menuLeft.w, menuLeft.h, 0, '#E69F00');  
 
   // Draw upper rectangle
   canvas.draw_menu_bar(menuTop.x, menuTop.y, menuTop.w, menuTop.h, 0, "#C7C7C795");

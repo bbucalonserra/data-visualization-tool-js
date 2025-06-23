@@ -42,7 +42,8 @@ function aiCheck() {
             console.log('Data not yet loaded');
             return;
         };
-        
+
+
         // Anonymous function to draw text.
         this.drawText();
 
@@ -118,6 +119,8 @@ function aiCheck() {
             let bubble = {
                 x: random(500, 1200),
                 y: random(300, 600),
+                // x: 400 + i * size * 0.9,
+                // y: 400 + i * size * 0.4,
                 velocityX: random(-0.2, + 0.2),
                 velocityY: random(-0.2, + 0.2),
                 size: size,
@@ -127,6 +130,7 @@ function aiCheck() {
             // Add bubble to array.
             this.aBubble.push(bubble);
         }
+
     }
 
     // Function to create and update the bubbles.
