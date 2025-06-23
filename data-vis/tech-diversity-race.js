@@ -67,7 +67,7 @@ function TechDiversityRace() {
     // Copy the row labels from the table (the first item of each row).
     var labels = this.data.getColumn(0);
 
-//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
+//------------------------------- START NEW CODE -----------------------------------------//
     // Colour to use for each category.
     let colours = [
       color('#002147'), // Royal Blue
@@ -77,7 +77,7 @@ function TechDiversityRace() {
       color('#4B0082'), // Deep Purple
       color('#A8A9AD')  // Silver Gray
     ];
-//-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
+//------------------------------- END NEW CODE -----------------------------------------//
 
     // Make a title.
     var title = 'Employee diversity at ' + companyName;

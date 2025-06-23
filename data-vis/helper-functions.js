@@ -43,7 +43,7 @@ function stringsToNumbers (array) {
 // Plotting helper functions
 // --------------------------------------------------------------------
 
-//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
+//------------------------------- START NEW CODE -----------------------------------------//
 function drawAxis(layout, colour=0, threeAxis=false) {
   stroke(color(colour));
   strokeWeight(1);
@@ -67,7 +67,7 @@ function drawAxis(layout, colour=0, threeAxis=false) {
        layout.rightMargin,
        layout.bottomMargin);
        
-//-------------------------------------------------------------------------- END NEW CODE ----------------------------------------------------------------------------//
+//------------------------------- END NEW CODE -----------------------------------------//
 
   }
   else {
@@ -147,7 +147,7 @@ function drawYAxisTickLabels(min, max, layout, mapFunction,
   }
 }
 
-//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
+//------------------------------- START NEW CODE -----------------------------------------//
 function drawY2AxisTickLabels(min, max, layout, mapFunction,
                              decimalPlaces) {
   // Map function must be passed with .bind(this).
@@ -171,7 +171,7 @@ function drawY2AxisTickLabels(min, max, layout, mapFunction,
          y);
   }
 }
-//-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
+//------------------------------- END NEW CODE -----------------------------------------//
 
 function drawXAxisTickLabel(value, layout, mapFunction) {
   // Map function must be passed with .bind(this).
@@ -198,7 +198,7 @@ function drawXAxisTickLabel(value, layout, mapFunction) {
   }
 }
 
-//-------------------------------------------------------------------------- START NEW CODE ----------------------------------------------------------------------------//
+//------------------------------- START NEW CODE -----------------------------------------//
 function draw2Legend(xPos, yPos, labelText1, labelText2) {
   textFont(robotoFont);
   textAlign(LEFT, CENTER);
@@ -241,4 +241,4 @@ function drawLegend(xPos, yPos, labels) {
     text(labels[i].text, currentX + boxSize + 10, yPos + boxSize / 2);
   }
 }
-//-------------------------------------------------------------------------- END NEW CODE ----------------------------------------------------------------------------//
+//------------------------------- END NEW CODE -----------------------------------------//

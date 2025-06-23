@@ -135,14 +135,16 @@ function PayGapTimeSeries() {
         // Convert strings to numbers.
         'year': this.data.getNum(i, 'year'),
         'payGap': this.data.getNum(i, 'pay_gap'),
-//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
+
+//------------------------------- START NEW CODE -----------------------------------------//
         'male': this.data.getNum(i, 'median_male'), // First attribute is row, second is column. So: row i, column median_male.
         'female': this.data.getNum(i, 'median_female')
-//-------------------------------------------------------------------------- END NEW CODE ----------------------------------------------------------------------------//
+//------------------------------- END NEW CODE -----------------------------------------//
       };
 
       if (previous != null) {
-//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
+        
+//------------------------------- START NEW CODE -----------------------------------------//
         if (current.year != 2017) { // NOT DRAWING YEAR 2017 FOR BETTER VISUALIZATION!
           let barWidth = 25;
           
@@ -175,7 +177,7 @@ function PayGapTimeSeries() {
               this.mapYearToWidth(current.year),
               this.mapPayGapToHeight(current.payGap));
         }
-//-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
+//------------------------------- END NEW CODE -----------------------------------------//
 
         // The number of x-axis labels to skip so that only
         // numXTickLabels are drawn.
@@ -188,7 +190,7 @@ function PayGapTimeSeries() {
         }
       }
 
-//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
+//------------------------------- START NEW CODE -----------------------------------------//
       // Assign current year to previous year so that it is available during the next iteration of this loop to give us the start position of the next line segment.
       previous = {
       year: current.year,
@@ -196,7 +198,7 @@ function PayGapTimeSeries() {
       male: current.male,
       female: current.female
       };
-//-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
+//------------------------------- END NEW CODE -----------------------------------------//
 
 }
   };
@@ -230,7 +232,7 @@ function PayGapTimeSeries() {
                this.layout.topMargin);   // Bigger pay gap at top.
   };
 
-//-------------------------------------------------------------------------- START NEW CODE --------------------------------------------------------------------------//
+//------------------------------- START NEW CODE -----------------------------------------//
   this.mapMedianToHeight = function(value) {
     return map(value,
                this.minMedian,
@@ -289,5 +291,5 @@ function PayGapTimeSeries() {
     text(labels[i].text, currentX + boxSize + 10, yPos + boxSize / 2);
   }
   }
-//-------------------------------------------------------------------------- END NEW CODE --------------------------------------------------------------------------//
+//------------------------------- END NEW CODE -----------------------------------------//
 }
