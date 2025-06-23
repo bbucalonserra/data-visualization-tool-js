@@ -198,7 +198,7 @@ function drawXAxisTickLabel(value, layout, mapFunction) {
   }
 }
 
-function drawLegend(xPos, yPos, labelText1, labelText2) {
+function draw2Legend(xPos, yPos, labelText1, labelText2) {
   textFont(robotoFont);
   textAlign(LEFT, CENTER);
   textSize(16);
@@ -215,3 +215,29 @@ function drawLegend(xPos, yPos, labelText1, labelText2) {
   fill(0);
   text(labelText2, xPos + 145, yPos + 6);
 }
+
+function drawLegend(xPos, yPos, labels) {
+  // Space per block
+  let spacing = 145;
+  let boxSize = 15;
+
+  // Font
+  textFont(robotoFont);
+  textAlign(LEFT, CENTER);
+  textSize(16);
+  noStroke();
+
+  for (let i = 0; i < labels.length; i++) {
+    // 
+    let currentX = xPos + i * spacing;
+
+    // 
+    fill(labels[i].color);
+    rect(currentX, yPos, boxSize, boxSize, 3);
+
+    // 
+    fill(0);
+    text(labels[i].text, currentX + boxSize + 10, yPos + boxSize / 2);
+  }
+}
+
