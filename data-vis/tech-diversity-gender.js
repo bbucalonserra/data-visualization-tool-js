@@ -10,16 +10,19 @@ function TechDiversityGender() {
   // characters.
   this.id = 'tech-diversity-gender';
 
+  // Title to display above the plot.
+  this.title = 'tech diversity in gender!';
+
   // Layout object to store all common plot layout parameters and
   // methods.
   this.layout = {
     // Locations of margin positions. Left and bottom have double margin
     // size due to axis and tick labels.
     leftMargin: width - x_offset * 9.5,
-    rightMargin: width - x_offset * 1,
-    topMargin: 100 + y_offset,
+    rightMargin: width - x_offset * 4,
+    topMargin: 160 + y_offset,
     bottomMargin: height,
-    pad: 5,
+    pad: 4,
 
     plotWidth: function() {
       return this.rightMargin - this.leftMargin;
@@ -72,6 +75,9 @@ function TechDiversityGender() {
       return;
     }
 
+    // Anonymous function to draw text.
+    this.drawText();
+
     // Draw Female/Male labels at the top of the plot.
     this.drawCategoryLabels();
 
@@ -94,10 +100,11 @@ function TechDiversityGender() {
       // Draw the company name in the left margin.
       fill(0);
       noStroke();
+      textSize(14);
       textAlign('right', 'top');
       text(company.name,
            this.layout.leftMargin - this.layout.pad,
-           lineY);
+           lineY - 4);
 
       // Draw female employees rectangle.
       fill(this.femaleColour);
@@ -114,6 +121,21 @@ function TechDiversityGender() {
            lineHeight - this.layout.pad);
     }
 
+  
+    // Pop values
+    var femaleArray = [];
+    var maleArray = [];
+
+    //
+    for (let i = 0; i < this.data.getRowCount(); i++) {
+      femaleArray.push(this.data.getNum(i, 'female'));
+      maleArray.push(this.data.getNum(i, 'male'));
+    }
+
+    // Mean
+    this.femaleMean = str(round(mean(femaleArray), 2));
+    this.maleMean = str(round(mean(maleArray), 2));
+
     // Draw 50% line
     stroke(150);
     strokeWeight(1);
@@ -122,23 +144,26 @@ function TechDiversityGender() {
          this.midX,
          this.layout.bottomMargin);
 
+    // Means
+    this.drawMean();
   };
 
   this.drawCategoryLabels = function() {
     fill(0);
+    textSize(18);
     noStroke();
     textAlign('left', 'top');
     text('Female',
          this.layout.leftMargin,
-         this.layout.pad + 170);
+         this.layout.pad + 230);
     textAlign('center', 'top');
     text('50%',
          this.midX,
-         this.layout.pad + 170);
+         this.layout.pad + 230);
     textAlign('right', 'top');
     text('Male',
          this.layout.rightMargin,
-         this.layout.pad + 170);
+         this.layout.pad + 230);
   };
 
   this.mapPercentToWidth = function(percent) {
@@ -148,4 +173,50 @@ function TechDiversityGender() {
                0,
                this.layout.plotWidth());
   };
+
+  // Function to draw the text from the "user", according to the tittle.
+  this.drawText = function() {
+      // Draw user message
+      let message_diversity_gender = "Check out "
+
+      push();
+      textSize(30);
+      textAlign(LEFT, TOP);
+      textFont(robotoFont);
+      fill(0);
+      noStroke();
+      text(message_diversity_gender, 440, 125.5);
+      textFont(robotoFontBold);
+      text(this.title, 570, 125.5)
+      pop();
+  }
+
+  // Function to draw mean values
+  this.drawMean = function() {
+    // Female
+    fill(this.femaleColour);
+    ellipse(width - 230, height - 430, 180, 180);
+
+    textSize(55);
+    textFont(robotoFont);
+    fill("white");
+    noStroke();
+    text(this.femaleMean + "%", width - 180, height - 440);
+
+    textSize(25);
+    text("Female mean", width - 165, height - 475);
+
+    // Male
+    fill(this.maleColour);
+    ellipse(width - 230, height - 200, 180, 180);
+
+    textSize(60);
+    textFont(robotoFont);
+    fill("white");
+    noStroke();
+    text(this.maleMean + "%", width - 180, height - 220);
+
+    textSize(25);
+    text("Male mean", width - 180, height - 255);
+  }
 }

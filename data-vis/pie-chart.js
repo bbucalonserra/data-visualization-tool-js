@@ -16,20 +16,23 @@ function PieChart(x, y, diameter) {
     return radians;
   };
 
-  this.draw = function(data, labels, colours, title) {
+  this.draw = function(data, labels=undefined, colours, title) {
 
     // Test that data is not empty and that each input array is the
-    // same length.
-    if (data.length == 0) {
-      alert('Data has length zero!');
-    } else if (![labels, colours].every((array) => {
-      return array.length == data.length;
-    })) {
-      alert(`Data (length: ${data.length})
-Labels (length: ${labels.length})
-Colours (length: ${colours.length})
-Arrays must be the same length!`);
+    if (labels!==undefined) {
+      // same length.
+      if (data.length == 0) {
+        alert('Data has length zero!');
+      } else if (![labels, colours].every((array) => {
+        return array.length == data.length;
+      })) {
+        alert(`Data (length: ${data.length})
+              Labels (length: ${labels.length})
+              Colours (length: ${colours.length})
+              Arrays must be the same length!`);
+        }
     }
+
 
     // https://p5js.org/examples/form-pie-chart.html
 
@@ -114,6 +117,7 @@ Arrays must be the same length!`);
       noStroke();
       textAlign('center', 'center');
       textSize(24);
+      fill(0);
       text(title, this.x, this.y - this.diameter * 0.6);
     }
   };

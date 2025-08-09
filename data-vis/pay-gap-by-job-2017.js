@@ -37,6 +37,26 @@ function PayGapByJob2017() {
   };
 
   this.setup = function() {
+    // Set colors range
+    let colorRanges = [
+    [[200, 255], [140, 180], [0, 50]],
+    [[20, 60], [60, 100], [60, 90]],
+    [[180, 220], [0, 40], [20, 60]],
+    [[80, 120], [130, 170], [40, 80]],
+    [[240, 255], [190, 220], [100, 140]],
+    [[0, 40], [0, 40], [0, 40]],
+    [[100, 160], [100, 160], [100, 160]]];
+
+    // Creating job types
+    this.jobs = this.data.getColumn('job_type');
+    this.unique_jobs = [... new Set (this.jobs)];
+    this.job_colors = [];
+
+    // Iterating
+    for (let i = 0; i < this.unique_jobs.length; i++) {
+      let range = colorRanges[int(random(colorRanges.length))];
+      this.job_colors.push(color(random(range[0][0], range[0][1]), random(range[1][0], range[1][1]), random(range[2][0], range[2][1])))
+    }
   };
 
   this.destroy = function() {
@@ -52,7 +72,6 @@ function PayGapByJob2017() {
     this.addAxes();
 
     // Get data from the table object.
-    var jobs = this.data.getColumn('job_subtype');
     var propFemale = this.data.getColumn('proportion_female');
     var payGap = this.data.getColumn('pay_gap');
     var numJobs = this.data.getColumn('num_jobs');
@@ -63,7 +82,6 @@ function PayGapByJob2017() {
     numJobs = stringsToNumbers(numJobs);
 
     // Set ranges for axes.
-    //
     // Use full 100% for x-axis (proportion of women in roles).
     var propFemaleMin = 0;
     var propFemaleMax = 100;
@@ -89,21 +107,26 @@ function PayGapByJob2017() {
       // x = propFemale
       // y = payGap
       // size = numJobs
-    ellipse(
-      ( map(propFemale[i], propFemaleMin, propFemaleMax,
-            this.pad, width - this.pad)
-        + this.offsetX
-      ) * this.scale,
 
-      ( map(payGap[i], payGapMin, payGapMax,
-            height - this.pad, this.pad)
-        + this.offsetY
-      ) * this.scale,
+      let job_index = this.unique_jobs.indexOf(this.jobs[i]);
 
-      map(numJobs[i], numJobsMin, numJobsMax,
-          this.dotSizeMin, this.dotSizeMax)
-      * this.scale
-    );
+      fill(this.job_colors[job_index]);
+
+      ellipse(
+        ( map(propFemale[i], propFemaleMin, propFemaleMax,
+              this.pad, width - this.pad)
+          + this.offsetX
+        ) * this.scale,
+
+        ( map(payGap[i], payGapMin, payGapMax,
+              height - this.pad, this.pad)
+          + this.offsetY
+        ) * this.scale,
+
+        map(numJobs[i], numJobsMin, numJobsMax,
+            this.dotSizeMin, this.dotSizeMax)
+        * this.scale
+      );
     }
   };
 

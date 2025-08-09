@@ -112,16 +112,20 @@ function aiCheck() {
         // Colors.
         let bubbleColors = ['#FFCD6E', '#688E26', '#1B4D3E', '#C8102E', '#C99A00'];
 
+        // Positions for them to not colide while creating. Avoiding using random for positions.
+        let xPositions = [500, 600, 700, 800, 850];
+        let yPositions = [300, 350, 500, 450, 900];
+
         // Loop for bubbles.
         for (let i = 0; i < this.data.getRowCount(); i++) {
             let size = this.quantity[i] * sizeValue;
 
             // Create one bubble object.
             let bubble = {
-                x: random(500, 1200),
-                y: random(300, 600),
-                // x: 400 + i * size * 0.9,
-                // y: 400 + i * size * 0.4,
+                // x: random(500, 1200),
+                // y: random(300, 600),
+                x: xPositions[i],
+                y: yPositions[i],
                 velocityX: random(-0.2, + 0.2),
                 velocityY: random(-0.2, + 0.2),
                 size: size,
