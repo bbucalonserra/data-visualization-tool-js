@@ -54,5 +54,27 @@
       text(user_message3, 750, 510); 
       pop();
     }
+
+    drawButton(x, y, label, isActive) {
+      if (isActive) {
+        fill('#E66100'); // verde quando ativo
+      } else {
+        fill('#C8102E'); // vermelho quando inativo
+      }      
+      noStroke();
+      rect(x, y, 140  , 40, 15);
+
+      fill(255);
+      textSize(18);
+      textFont(robotoFont);
+      textAlign(CENTER, CENTER);
+      text(label, x + 70, y + 20);
+      if (mouseIsPressed &&
+          mouseX > x && mouseX < x + 140 &&
+          mouseY > y && mouseY < y + 40) {
+        return true;
+      }
+      return false;
+    }
   }
 //------------------------------- END NEW CODE -----------------------------------------//

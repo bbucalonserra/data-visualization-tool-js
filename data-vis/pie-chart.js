@@ -59,7 +59,7 @@ function PieChart(x, y, diameter) {
     // Creating a variable "d" to calculate the distance between two points. Here, it's the distance between the mouse (point 1) and the center of the pie chart (point 2).
     // Structure: dist(x1, y1, x2, y2), where x1/y1 are coordenates of the first point and x2/y2 coordenats of the second point.
     let d = dist(mouseX, mouseY, this.x, this.y);
-    let mouse_pie_angle = null;  // ✅ DECLARADA FORA PARA SER USADA DEPOIS
+    let mouse_pie_angle = null;
 
     //
     if (d < this.diameter / 2) { // Divided by two since radius = diameter/2.
@@ -76,12 +76,12 @@ function PieChart(x, y, diameter) {
       let [r, g, b] = colours[i].levels;
       let valueText = data[i].toFixed(2) + "%";
 
-      textSize(14);
+      textSize(25);
       textAlign('left', 'top');
       textLeading(18);
 
-      let textW = textWidth(valueText) + 10;
-      let textH = 25;
+      let textW = textWidth(valueText) + 20;
+      let textH = 40;
 
       // Horizontal position
       let tooltipX = (mouseX + 10 + textW > width)

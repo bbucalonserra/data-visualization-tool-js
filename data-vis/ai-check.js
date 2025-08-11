@@ -7,7 +7,7 @@ function aiCheck() {
     this.id = 'ai usage';
 
     // Title to display above the plot.
-    this.title = 'how often does people double-check AI generated information.';
+    this.title = 'how often people verify AI output.';
 
     // Property to represent whether data has been loaded.
     this.loaded = false;
