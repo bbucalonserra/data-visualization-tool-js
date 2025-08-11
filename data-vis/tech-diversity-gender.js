@@ -1,5 +1,4 @@
 function TechDiversityGender() {
-
   // Offset
   x_offset = 100;
   y_offset = 100;
@@ -41,8 +40,10 @@ function TechDiversityGender() {
   this.midX = (this.layout.plotWidth() / 2) + this.layout.leftMargin;
 
   // Default visualisation colours.
-  this.femaleColour = color('#C8102E');
-  this.maleColour = color('#002147');
+  this.femaleBlindedColour = '#E66100';
+  this.maleBlindedColour = '#007C91';
+  this.femaleRegularColour = '#C8102E';
+  this.maleRegularColour = '#002147';
 
   // Property to represent whether data has been loaded.
   this.loaded = false;
@@ -107,18 +108,33 @@ function TechDiversityGender() {
            lineY - 4);
 
       // Draw female employees rectangle.
-      fill(this.femaleColour);
-      rect(this.layout.leftMargin,
-           lineY,
-           this.mapPercentToWidth(company.female),
-           lineHeight - this.layout.pad);
 
-      // Draw male employees rectangle.
-      fill(this.maleColour);
-      rect(this.layout.leftMargin + this.mapPercentToWidth(company.female),
-           lineY,
-           this.mapPercentToWidth(company.male),
-           lineHeight - this.layout.pad);
+      if(accessibilityMode == true) {
+        fill(this.femaleBlindedColour);
+        rect(this.layout.leftMargin,
+        lineY,
+        this.mapPercentToWidth(company.female),
+        lineHeight - this.layout.pad);
+
+        fill(this.maleBlindedColour);
+        rect(this.layout.leftMargin + this.mapPercentToWidth(company.female),
+            lineY,
+            this.mapPercentToWidth(company.male),
+            lineHeight - this.layout.pad);
+
+      } else {
+        fill(this.femaleRegularColour);
+        rect(this.layout.leftMargin,
+        lineY,
+        this.mapPercentToWidth(company.female),
+        lineHeight - this.layout.pad);
+
+        fill(this.maleRegularColour);
+        rect(this.layout.leftMargin + this.mapPercentToWidth(company.female),
+            lineY,
+            this.mapPercentToWidth(company.male),
+            lineHeight - this.layout.pad);
+      }
     }
 
   
@@ -193,30 +209,60 @@ function TechDiversityGender() {
 
   // Function to draw mean values
   this.drawMean = function() {
-    // Female
-    fill(this.femaleColour);
-    ellipse(width - 230, height - 430, 180, 180);
+    if(accessibilityMode == true) {
+      // Female
+      fill(this.femaleBlindedColour);
+      ellipse(width - 230, height - 430, 180, 180);
 
-    textSize(55);
-    textFont(robotoFont);
-    fill("white");
-    noStroke();
-    text(this.femaleMean + "%", width - 180, height - 440);
+      textSize(55);
+      textFont(robotoFont);
+      fill("white");
+      noStroke();
+      text(this.femaleMean + "%", width - 180, height - 440);
 
-    textSize(25);
-    text("Female mean", width - 165, height - 475);
+      textSize(25);
+      text("Female mean", width - 165, height - 475);
 
-    // Male
-    fill(this.maleColour);
-    ellipse(width - 230, height - 200, 180, 180);
+      // Male
+      fill(this.maleBlindedColour);
+      ellipse(width - 230, height - 200, 180, 180);
 
-    textSize(60);
-    textFont(robotoFont);
-    fill("white");
-    noStroke();
-    text(this.maleMean + "%", width - 180, height - 220);
+      textSize(60);
+      textFont(robotoFont);
+      fill("white");
+      noStroke();
+      text(this.maleMean + "%", width - 180, height - 220);
 
-    textSize(25);
-    text("Male mean", width - 180, height - 255);
+      textSize(25);
+      text("Male mean", width - 180, height - 255);
+    } else {
+      // Female
+      fill(this.femaleRegularColour);
+      ellipse(width - 230, height - 430, 180, 180);
+
+      textSize(55);
+      textFont(robotoFont);
+      fill("white");
+      noStroke();
+      text(this.femaleMean + "%", width - 180, height - 440);
+
+      textSize(25);
+      text("Female mean", width - 165, height - 475);
+
+      // Male
+      fill(this.maleRegularColour);
+      ellipse(width - 230, height - 200, 180, 180);
+
+      textSize(60);
+      textFont(robotoFont);
+      fill("white");
+      noStroke();
+      text(this.maleMean + "%", width - 180, height - 220);
+
+      textSize(25);
+      text("Male mean", width - 180, height - 255);
+    }
+
+
   }
 }

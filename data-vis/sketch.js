@@ -89,7 +89,6 @@ function draw() {
   if (clicked == true) {
     accessibilityMode = !accessibilityMode;
     clicked = false;
-    console.log("Clique único registrado!");
   }
 
   if (accessibilityMode == false) {
