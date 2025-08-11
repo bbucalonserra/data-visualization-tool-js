@@ -9,10 +9,10 @@ function NutrientsTimeSeries() {
   this.id = 'nutrients-timeseries';
 
   // Title to display above the plot.
-  this.title = 'Vitamins Instake';
+  this.title = 'the vitamins instake.';
 
     // Names for each axis.
-  this.xAxisLabel = 'year';
+  this.xAxisLabel = 'Year';
   this.y1AxisLabel = 'Values';
   this.y2AxisLabel = "";
 
@@ -26,10 +26,10 @@ function NutrientsTimeSeries() {
 
     // Locations of margin positions. Left and bottom have double margin
     // size due to axis and tick labels.
-    leftMargin: marginSize * 14,
-    rightMargin: width - marginSize,
-    topMargin: marginSize + 200,
-    bottomMargin: height - marginSize * 3,
+    leftMargin: marginSize * 12,
+    rightMargin: width - marginSize - 80,
+    topMargin: marginSize + 250,
+    bottomMargin: height - marginSize * 4,
     pad: 5,
 
     plotWidth: function() {
@@ -41,7 +41,7 @@ function NutrientsTimeSeries() {
     },
 
     // Boolean to enable/disable background grid.
-    grid: true,
+    grid: false,
 
     // Number of axis tick labels to draw so that they are not drawn on top of one another.
     numXTickLabels: 10,
@@ -74,9 +74,12 @@ function NutrientsTimeSeries() {
     this.endYear = Number(this.data.columns[this.data.columns.length - 1]);
 
     // Colors
-    for (var i = 0; i < this.data.getRowCount(); i++) {
-      this.colors.push(color(random(0, 255), random(0, 255), random(0, 255)));
-    }
+    this.colors = [
+      "#002147",
+      "#C8102E",
+      "#FFD700",
+      "#007A33"
+    ]
 
     // Find min and max
     this.minValue = 0;
@@ -92,8 +95,17 @@ function NutrientsTimeSeries() {
       return;
     }
 
-    // Draw the title above the plot.
-    this.drawTitle();
+    // Text
+    this.drawText();
+
+    this.draw4Legend(
+        500, 
+        720,
+        "Vitamin B6",
+        "Vitamin B12",
+        "Vitamin C",
+        "Vitamin A"
+    )
 
     // Draw all y-axis labels.
     drawYAxisTickLabels(this.minValue,
@@ -112,8 +124,7 @@ function NutrientsTimeSeries() {
                    this.layout);
 
     // Plot all pay gaps between startYear and endYear using the width of the canvas minus margins.
-    var previous;
-    var numYears = this.endYear - this.startYear;
+    var numYears = this.endYear - this.startYear + 2;
 
     // Loop over all rows and draw a line from the previous value to the current.
     for (var i = 0; i < this.data.getRowCount(); i++) {
@@ -132,6 +143,7 @@ function NutrientsTimeSeries() {
           // Draw line segment connecting previous year to current
           // year pay gap.
           stroke(this.colors[i]);
+          strokeWeight(4);
           line(this.mapYearToWidth(previous.year),
               this.mapPayGapToHeight(previous.value),
               this.mapYearToWidth(current.year),
@@ -143,36 +155,23 @@ function NutrientsTimeSeries() {
 
           // Draw the tick label marking the start of the previous year.
           if (i % xLabelSkip == 0) {
-            drawXAxisTickLabel(previous.year, this.layout,
+            drawXAxisTickLabel(previous.year, 
+                              this.layout,
                               this.mapYearToWidth.bind(this));
           }
         }
-        else {
-          noStroke();
-          fill(this.colors[i]);
-          text(l, 630, this.mapPayGapToHeight(current.value))
-        }
+
       // Assign current year to previous year so that it is available during the next iteration of this loop to give us the start position of the next line segment.
       previous = current;
       }
     }
   };
 
-  this.drawTitle = function() {
-    fill(0);
-    noStroke();
-    textAlign('center', 'center');
-
-    text(this.title,
-         (this.layout.plotWidth() / 2) + this.layout.leftMargin,
-         this.layout.topMargin - (this.layout.marginSize / 2));
-  };
-
   this.mapYearToWidth = function(value) {
     return map(value,
                this.startYear,
                this.endYear,
-               this.layout.leftMargin,   // Draw left-to-right from margin.
+               this.layout.leftMargin + 50,   // Draw left-to-right from margin.
                this.layout.rightMargin);
   };
 
@@ -183,5 +182,52 @@ function NutrientsTimeSeries() {
                this.layout.bottomMargin, // Smaller pay gap at bottom.
                this.layout.topMargin);   // Bigger pay gap at top.
   };
+
+  this.drawText = function() {
+    // Draw user message
+    let texts = "Check out "
+
+    push();
+    textSize(30);
+    textAlign(LEFT, TOP);
+    textFont(robotoFont);
+    fill(0);
+    noStroke();
+    text(texts, 440, 125.5);
+    textFont(robotoFontBold);
+    text(this.title, 570, 125.5)
+    pop();
+  }
+
+  this.draw4Legend = function (xPos, yPos, labelText1, labelText2, labelText3, labelText4) {
+      rightOffset = 300;
+      textFont(robotoFont);
+      textAlign(LEFT, CENTER);
+      textSize(16);
+      noFill();
+      noStroke();
+
+      fill(this.colors[0]);
+      rect(xPos + 120 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText1, xPos + 140 + rightOffset, yPos + 6);
+
+      fill(this.colors[1]);
+      rect(xPos + 220 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText2, xPos + 240 + rightOffset, yPos + 6);
+
+      fill(this.colors[2]);
+      rect(xPos + 330 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText3, xPos + 350 + rightOffset, yPos + 6);
+
+      fill(this.colors[3]);
+      rect(xPos + 420 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText4, xPos + 440 + rightOffset, yPos + 6);
+  }
+
+
 }
 //------------------------------- END NEW CODE -----------------------------------------//
