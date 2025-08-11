@@ -8,6 +8,9 @@ function UKFoodAttitudes() {
   // characters.
   this.id = 'uk-food-attitudes';
 
+  // Title
+  this.title = 'food attitudes.';
+
   // Property to represent whether data has been loaded.
   this.loaded = false;
 
@@ -32,7 +35,7 @@ function UKFoodAttitudes() {
 
     // Create a select DOM element.
     this.select = createSelect();
-    this.select.position(0.36 * width, 0.18 * height);
+    this.select.position(0.28 * width, 0.305 * height);
 
     // Fill the options with all company names.
     var questions = this.data.columns;
@@ -47,13 +50,19 @@ function UKFoodAttitudes() {
   };
 
   // Create a new pie chart object.
-  this.pie = new PieChart(900, height / 1.7, width * 0.3);
+  this.pie = new PieChart(850, height / 1.6, width * 0.3);
 
   this.draw = function() {
     if (!this.loaded) {
       console.log('Data not yet loaded');
       return;
     }
+
+    // 
+    this.drawText();
+
+    // Draw Legend
+    this.drawLegend();
 
     // Get the value of the company we're interested in from the
     // select item.
@@ -84,5 +93,37 @@ function UKFoodAttitudes() {
     // Draw the pie chart!
     this.pie.draw(col, labels, colours, title);
   };
+
+  this.drawLegend = function () {
+
+    // Boxes
+    fill(242, 242, 242);
+    noStroke();
+    rect(375, 200, 480, 65, 8);
+
+    // Text
+    textSize(18);
+    textAlign(LEFT, TOP);
+    textFont(robotoFont);
+    fill(0);
+    noStroke();
+    text("Opinion", 385, 205);
+  };
+
+  this.drawText = function() {
+      // Draw user message
+      let texts = "Check out ";
+
+      push();
+      textSize(30);
+      textAlign(LEFT, TOP);
+      textFont(robotoFont);
+      fill(0);
+      noStroke();
+      text(texts, 440, 125.5);
+      textFont(robotoFontBold);
+      text(this.title, 570, 125.5);
+      pop();
+  }
 }
 //------------------------------- END NEW CODE -----------------------------------------//

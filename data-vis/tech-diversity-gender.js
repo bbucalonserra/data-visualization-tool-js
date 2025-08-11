@@ -11,7 +11,7 @@ function TechDiversityGender() {
   this.id = 'tech-diversity-gender';
 
   // Title to display above the plot.
-  this.title = 'tech diversity in gender!';
+  this.title = 'gender tech diversity.';
 
   // Layout object to store all common plot layout parameters and
   // methods.

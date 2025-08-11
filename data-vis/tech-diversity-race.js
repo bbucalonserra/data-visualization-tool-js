@@ -8,7 +8,7 @@ function TechDiversityRace() {
   this.id = 'tech-diversity-race';
 
   // Title to display above the plot.
-  this.title = 'the differences between tech companies regarding race!';
+  this.title = 'employee diversity race in tech companies.';
 
   // Property to represent whether data has been loaded.
   this.loaded = false;
@@ -34,10 +34,10 @@ function TechDiversityRace() {
 
     // Create a select DOM element.
     this.select1 = createSelect();
-    this.select1.position(0.35 * width, 0.85 * height);
+    this.select1.position(0.32 * width, 0.83 * height);
 
     this.select2 = createSelect();
-    this.select2.position(0.70 * width, 0.85 * height);
+    this.select2.position(0.65 * width, 0.83 * height);
 
     // Fill the options with all company names.
     var companies = this.data.columns;
@@ -55,14 +55,29 @@ function TechDiversityRace() {
   };
 
   // Create a new pie chart object.
-  this.pie1 = new PieChart(600, height / 1.75, width * 0.25);
-  this.pie2 = new PieChart(1050, height / 1.75, width * 0.25);
+  this.pie1 = new PieChart(615, height / 1.73, width * 0.24);
+  this.pie2 = new PieChart(1080, height / 1.73, width * 0.24);
 
   this.draw = function() {
     if (!this.loaded) {
       console.log('Data not yet loaded');
       return;
     }
+
+    // Boxes
+    this.drawBoxes();
+
+    // Legend
+    this.draw5Legend(
+        420, 
+        740,
+        "White",
+        "Asian",
+        "Latino",
+        "Black",
+        "Multi",
+        "Other"
+    )
 
     // Anonymous function to draw text.
     this.drawText();
@@ -82,7 +97,7 @@ function TechDiversityRace() {
 
     // Copy the row labels from the table (the first item of each row).
     var labels1 = undefined;
-    var labels2 = this.data.getColumn(0);
+    var labels2 = undefined;
 
 //------------------------------- START NEW CODE -----------------------------------------//
     // Colour to use for each category.
@@ -96,8 +111,8 @@ function TechDiversityRace() {
     ];
 
     // Make a title.
-    var title1 = 'Employee diversity at ' + companyName1;
-    var title2 = 'Employee diversity at ' + companyName2;
+    var title1 =  companyName1;
+    var title2 = companyName2;
 
     // Draw the pie chart!
     this.pie1.draw(col1, labels1, colours, title1);
@@ -119,6 +134,54 @@ function TechDiversityRace() {
       textFont(robotoFontBold);
       text(this.title, 570, 125.5)
       pop();
+  }
+
+  // Function to draw the legend.
+  this.draw5Legend = function (xPos, yPos, labelText1, labelText2, labelText3, labelText4, labelText5, labelText6) {
+      rightOffset = 300;
+      textFont(robotoFont);
+      textAlign(LEFT, CENTER);
+      textSize(16);
+      noFill();
+      noStroke();
+
+      fill('#002147');
+      rect(xPos + 120 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText1, xPos + 140 + rightOffset, yPos + 6);
+
+      fill('#C8102E');
+      rect(xPos + 200 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText2, xPos + 220 + rightOffset, yPos + 6);
+
+      fill('#FFD700');
+      rect(xPos + 280 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText3, xPos + 300 + rightOffset, yPos + 6);
+
+      fill('#007A33');
+      rect(xPos + 370 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText4, xPos + 390 + rightOffset, yPos + 6);
+
+      fill('#4B0082');
+      rect(xPos + 450 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText5, xPos + 470 + rightOffset, yPos + 6);
+
+      fill('#A8A9AD');
+      rect(xPos + 520 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText6, xPos + 540 + rightOffset, yPos + 6);
+  }
+
+  this.drawBoxes = function() {
+    noFill();
+    stroke(1);
+    rect(400, 220, 440, 470, 15);
+    rect(863, 220, 440, 470, 15);
+
   }
 
 //------------------------------- END NEW CODE -----------------------------------------//

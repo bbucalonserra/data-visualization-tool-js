@@ -5,11 +5,14 @@ function ClimateChange() {
 
   // Each visualisation must have a unique ID with no special
   // characters.
-  this.id = 'climate-change';
+  this.id = 'the climate-change';
+
+  // Title
+  this.title = "the climate change."
 
   // Names for each axis.
   this.xAxisLabel = 'year';
-  this.y1AxisLabel = '℃';
+  this.y1AxisLabel = 'ºC';
   this.y2AxisLabel = "";
 
   var marginSize = 35;
@@ -17,14 +20,14 @@ function ClimateChange() {
   // Layout object to store all common plot layout parameters and
   // methods.
   this.layout = {
-    marginSize: marginSize,
+    marginSize: marginSize + 120,
 
     // Locations of margin positions. Left and bottom have double margin
     // size due to axis and tick labels.
-    leftMargin: marginSize * 12,
+    leftMargin: marginSize * 13,
     rightMargin: width - marginSize - 100,
-    topMargin: marginSize * 7,
-    bottomMargin: height - marginSize * 4,
+    topMargin: marginSize * 8.5,
+    bottomMargin: height - marginSize * 3,
     pad: 5,
 
     plotWidth: function() {
@@ -86,13 +89,13 @@ function ClimateChange() {
                                     this.maxYear - 1,
                                     this.minYear,
                                     1);
-    this.startSlider.position(400, 10);
+    this.startSlider.position(450, 255);
 
     this.endSlider = createSlider(this.minYear + 1,
                                   this.maxYear,
                                   this.maxYear,
                                   1);
-    this.endSlider.position(600, 10);
+    this.endSlider.position(640, 255);
   };
 
   this.destroy = function() {
@@ -105,6 +108,12 @@ function ClimateChange() {
       console.log('Data not yet loaded');
       return;
     }
+
+    // Legend
+    this.drawLegend();
+
+    // Anonymous function to draw text.
+    this.drawText();
 
     // Prevent slider ranges overlapping.
     if (this.startSlider.value() >= this.endSlider.value()) {
@@ -221,6 +230,7 @@ function ClimateChange() {
     if (this.frameCount >= numYears) {
       //noLoop();
     }
+
   };
 
   this.mapYearToWidth = function(value) {
@@ -243,9 +253,50 @@ function ClimateChange() {
     var red =  map(value,
                    this.minTemperature,
                    this.maxTemperature,
-                   0,
-                   255);
-    var blue = 255 - red;
+                   200,
+                   0);
+
+    var blue=  map(value,
+                   this.minTemperature,
+                   this.maxTemperature,
+                   46,
+                   71);
     return color(red, 0, blue, 100);
   };
+
+  // Function to draw the text from the "user", according to the tittle.
+  this.drawText = function() {
+    // Draw user message
+    let message = "Check out"
+
+    push();
+    textSize(30);
+    textAlign(LEFT, TOP);
+    textFont(robotoFont);
+    fill(0);
+    noStroke();
+    text(message, 440, 125.5);
+    textFont(robotoFontBold);
+    text(this.title, 570, 125.5);
+    pop();
+  }
+
+  this.drawLegend = function () {
+
+    // Boxes
+    fill(242, 242, 242);
+    noStroke();
+    rect(435, 209, 155, 65, 8);
+    rect(620, 209, 155, 65, 8);
+
+    // Text
+    textSize(18);
+    textAlign(LEFT, TOP);
+    textFont(robotoFont);
+    fill(0);
+    noStroke();
+    text("Start date", 455, 219);
+    text("End date", 640, 219);
+
+  }
 }

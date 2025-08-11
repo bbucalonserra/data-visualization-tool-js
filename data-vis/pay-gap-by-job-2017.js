@@ -12,6 +12,9 @@ function PayGapByJob2017() {
   // characters.
   this.id = 'pay-gap-by-job-2017';
 
+  // Title
+  this.title = 'the pay gap per job.';
+
   // Property to represent whether data has been loaded.
   this.loaded = false;
 
@@ -68,6 +71,13 @@ function PayGapByJob2017() {
       return;
     }
 
+    console.log(this.job_colors)
+    // Text
+    this.drawText();
+
+    // Legend
+    this.drawLegend();
+
     // Draw the axes.
     this.addAxes();
 
@@ -102,7 +112,7 @@ function PayGapByJob2017() {
     stroke(0);
     strokeWeight(1);
 
-    for (i = 0; i < this.data.getRowCount(); i++) {
+    for (let i = 0; i < this.data.getRowCount(); i++) {
       // Draw an ellipse for each point.
       // x = propFemale
       // y = payGap
@@ -136,17 +146,51 @@ function PayGapByJob2017() {
     // Add vertical line.
     line(
       (width/2 + this.offsetX) * this.scale,
-      (this.pad           + this.offsetY) * this.scale,
+      (this.pad + this.offsetY) * this.scale,
       (width/2 + this.offsetX) * this.scale,
-      (height - this.pad  + this.offsetY) * this.scale
+      (height - this.pad + this.offsetY) * this.scale
     );
 
     // Add horizontal line.
     line(
-      (this.pad + this.offsetX)          * this.scale,
-      (height/2 + this.offsetY)          * this.scale,
+      (this.pad + this.offsetX) * this.scale,
+      (height/2 + this.offsetY) * this.scale,
       (width   - this.pad + this.offsetX) * this.scale,
-      (height/2 + this.offsetY)          * this.scale
+      (height/2 + this.offsetY) * this.scale
     );
+  };
+
+  // Function to draw the text from the "user", according to the tittle.
+  this.drawText = function () {
+    // Draw user message
+    let message = "Check out";
+
+    push();
+    textSize(30);
+    textAlign(LEFT, TOP);
+    textFont(robotoFont);
+    fill(0);
+    noStroke();
+    text(message, 440, 125.5);
+    textFont(robotoFontBold);
+    text(this.title, 570, 125.5);
+    pop();
+  };
+
+  // Draw legend
+  this.drawLegend = function () {
+    for (let i = 0; i < this.job_colors.length; i++) {
+      // Text
+      textSize(14);
+      textAlign(LEFT, TOP);
+      textFont(robotoFont);
+      fill(0);
+      noStroke();
+      text(this.unique_jobs[i], 410, 590 + 20 * i);
+
+      // Circle
+      fill(red(this.job_colors[i]), green(this.job_colors[i]), blue(this.job_colors[i]));
+      ellipse(400, 598 + 20 * i, 10, 10);
+    }
   };
 }

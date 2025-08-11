@@ -7,7 +7,7 @@ function PayGapTimeSeries() {
   this.id = 'pay-gap-timeseries';
 
   // Title to display above the plot.
-  this.title = 'Gender Pay GAP chart!';
+  this.title = 'gender pay GAP chart.';
 
   // Names for each axis.
   this.xAxisLabel = "Year";
