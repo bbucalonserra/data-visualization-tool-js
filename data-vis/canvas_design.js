@@ -62,13 +62,13 @@
         fill('#C8102E'); // vermelho quando inativo
       }      
       noStroke();
-      rect(x, y, 140  , 40, 15);
+      rect(x, y, 140 , 40, 15);
 
       fill(255);
       textSize(18);
       textFont(robotoFont);
       textAlign(CENTER, CENTER);
-      text(label, x + 70, y + 20);
+      text(label, x + 70, y + 18);
       if (mouseIsPressed &&
           mouseX > x && mouseX < x + 140 &&
           mouseY > y && mouseY < y + 40) {
