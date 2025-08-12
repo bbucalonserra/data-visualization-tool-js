@@ -1,7 +1,7 @@
 function PayGapTimeSeries() {
 
   // Name for the visualisation to appear in the menu bar.
-  this.name = 'Gender Pay GAP';
+  this.name = 'Gender pay GAP';
 
   // Each visualisation must have a unique ID with no special characters.
   this.id = 'pay-gap-timeseries';

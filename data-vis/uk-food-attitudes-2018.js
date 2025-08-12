@@ -2,7 +2,7 @@
 function UKFoodAttitudes() {
 
   // Name for the visualisation to appear in the menu bar.
-  this.name = 'Food Attitudes';
+  this.name = 'Food attitudes';
 
   // Each visualisation must have a unique ID with no special
   // characters.

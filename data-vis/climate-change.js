@@ -1,7 +1,7 @@
 function ClimateChange() {
 
   // Name for the visualisation to appear in the menu bar.
-  this.name = 'Climate Change';
+  this.name = 'Climate change';
 
   // Each visualisation must have a unique ID with no special
   // characters.

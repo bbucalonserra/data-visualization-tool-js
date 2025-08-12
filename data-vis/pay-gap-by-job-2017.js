@@ -6,7 +6,7 @@ function PayGapByJob2017() {
   this.scale =  0.7;
 
   // Name for the visualisation to appear in the menu bar.
-  this.name = 'Pay GAP per Job';
+  this.name = 'Pay GAP per job';
 
   // Each visualisation must have a unique ID with no special
   // characters.

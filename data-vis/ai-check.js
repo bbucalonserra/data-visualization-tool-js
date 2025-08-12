@@ -1,7 +1,7 @@
 //------------------------------- START NEW CODE -----------------------------------------//
 function aiCheck() {
     // Name for the visualisation to appear in the menu bar.
-    this.name = 'AI Validation';
+    this.name = 'AI validation';
 
     // Each visualisation must have a unique ID with no special characters.
     this.id = 'ai usage';

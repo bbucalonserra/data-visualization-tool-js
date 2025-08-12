@@ -2,7 +2,7 @@
 function NutrientsTimeSeries() {
 
   // Name for the visualisation to appear in the menu bar.
-  this.name = 'Vitamins Intake TimeSeries';
+  this.name = 'Vitamins intake timeseries';
 
   // Each visualisation must have a unique ID with no special
   // characters.
