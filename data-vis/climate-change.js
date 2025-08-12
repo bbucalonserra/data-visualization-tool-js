@@ -173,7 +173,7 @@ function ClimateChange() {
         // Draw background gradient to represent colour temperature of
         // the current year.
         noStroke();
-        fill(this.mapTemperatureToColour(current.temperature));
+        fill(accessibilityMode == true ? this.mapTemperatureToColourBlinded(current.temperature) : this.mapTemperatureToColourRegular(current.temperature));
         rect(this.mapYearToWidth(previous.year),
              this.layout.topMargin,
              segmentWidth,
@@ -249,7 +249,7 @@ function ClimateChange() {
                this.layout.topMargin);   // Higher temperature at top.
   };
 
-  this.mapTemperatureToColour = function(value) {
+  this.mapTemperatureToColourRegular = function(value) {
     var red =  map(value,
                    this.minTemperature,
                    this.maxTemperature,
@@ -263,6 +263,28 @@ function ClimateChange() {
                    71);
     return color(red, 0, blue, 100);
   };
+
+  this.mapTemperatureToColourBlinded = function(value) {
+  var red =  map(value,
+                  this.minTemperature,
+                  this.maxTemperature,
+                  230,
+                  0);
+
+  var blue =  map(value,
+                  this.minTemperature,
+                  this.maxTemperature,
+                  0,
+                  145);
+
+  var green = map(value,
+              this.minTemperature,
+              this.maxTemperature,
+              97,
+              124);
+
+  return color(red, green, blue, 100);
+};
 
   // Function to draw the text from the "user", according to the tittle.
   this.drawText = function() {

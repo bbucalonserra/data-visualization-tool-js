@@ -8,7 +8,7 @@ function TechDiversityRace() {
   this.id = 'tech-diversity-race';
 
   // Title to display above the plot.
-  this.title = 'employee diversity race in tech companies.';
+  this.title = 'racial diversity in tech.';
 
   // Property to represent whether data has been loaded.
   this.loaded = false;
@@ -68,16 +68,29 @@ function TechDiversityRace() {
     this.drawBoxes();
 
     // Legend
-    this.draw5Legend(
-        420, 
-        740,
-        "White",
-        "Asian",
-        "Latino",
-        "Black",
-        "Multi",
-        "Other"
-    )
+    if (accessibilityMode == true) {
+      this.draw5LegendColorBlind(
+          420, 
+          740,
+          "White",
+          "Asian",
+          "Latino",
+          "Black",
+          "Multi",
+          "Other"
+      )
+    } else {
+      this.draw5LegendRegular(
+          420, 
+          740,
+          "White",
+          "Asian",
+          "Latino",
+          "Black",
+          "Multi",
+          "Other"
+      )
+    }
 
     // Anonymous function to draw text.
     this.drawText();
@@ -101,22 +114,36 @@ function TechDiversityRace() {
 
 //------------------------------- START NEW CODE -----------------------------------------//
     // Colour to use for each category.
-    let colours = [
-      color('#002147'), // Royal Blue
-      color('#C8102E'), // Scarlet Red
-      color('#FFD700'), // Gold
-      color('#007A33'), // Emerald Green
-      color('#4B0082'), // Deep Purple
-      color('#A8A9AD')  // Silver Gray
+    let regularColours = [
+      color('#002147'),
+      color('#C8102E'),
+      color('#FFD700'),
+      color('#007A33'),
+      color('#4B0082'),
+      color('#A8A9AD')
     ];
+
+    let colorBlindColors = [
+      color('#E66100'),
+      color('#007C91'),
+      color('#000000'),
+      color('#FFD66E'),
+      color('#B2BEB5'),
+      color('#544F4B ')
+    ]
 
     // Make a title.
     var title1 =  companyName1;
     var title2 = companyName2;
 
     // Draw the pie chart!
-    this.pie1.draw(col1, labels1, colours, title1);
-    this.pie2.draw(col2, labels2, colours, title2);
+    if (accessibilityMode == true) {
+      this.pie1.draw(col1, labels1, colorBlindColors, title1);
+      this.pie2.draw(col2, labels2, colorBlindColors, title2);
+    } else {
+      this.pie1.draw(col1, labels1, regularColours, title1);
+      this.pie2.draw(col2, labels2, regularColours, title2);
+    }
   };
 
   // Function to draw the text from the "user", according to the tittle.
@@ -137,7 +164,7 @@ function TechDiversityRace() {
   }
 
   // Function to draw the legend.
-  this.draw5Legend = function (xPos, yPos, labelText1, labelText2, labelText3, labelText4, labelText5, labelText6) {
+  this.draw5LegendRegular = function (xPos, yPos, labelText1, labelText2, labelText3, labelText4, labelText5, labelText6) {
       rightOffset = 300;
       textFont(robotoFont);
       textAlign(LEFT, CENTER);
@@ -171,6 +198,45 @@ function TechDiversityRace() {
       text(labelText5, xPos + 470 + rightOffset, yPos + 6);
 
       fill('#A8A9AD');
+      rect(xPos + 520 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText6, xPos + 540 + rightOffset, yPos + 6);
+  }
+
+  this.draw5LegendColorBlind = function (xPos, yPos, labelText1, labelText2, labelText3, labelText4, labelText5, labelText6) {
+      rightOffset = 300;
+      textFont(robotoFont);
+      textAlign(LEFT, CENTER);
+      textSize(16);
+      noFill();
+      noStroke();
+
+      fill('#E66100');
+      rect(xPos + 120 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText1, xPos + 140 + rightOffset, yPos + 6);
+
+      fill('#007C91');
+      rect(xPos + 200 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText2, xPos + 220 + rightOffset, yPos + 6);
+
+      fill('#000000');
+      rect(xPos + 280 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText3, xPos + 300 + rightOffset, yPos + 6);
+
+      fill('#FFD66E');
+      rect(xPos + 370 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText4, xPos + 390 + rightOffset, yPos + 6);
+
+      fill('#B2BEB5');
+      rect(xPos + 450 + rightOffset, yPos, 15, 15, 3);
+      fill(0);
+      text(labelText5, xPos + 470 + rightOffset, yPos + 6);
+
+      fill('#544F4B');
       rect(xPos + 520 + rightOffset, yPos, 15, 15, 3);
       fill(0);
       text(labelText6, xPos + 540 + rightOffset, yPos + 6);

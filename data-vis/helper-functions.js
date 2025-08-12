@@ -95,11 +95,11 @@ function drawAxisLabels(xLabel, y1Label, y2Label="", layout) {
   // Draw x-axis label.
   text(xLabel,
        (layout.plotWidth() / 2) + layout.leftMargin,
-       layout.bottomMargin + (layout.marginSize * 0.25));
+       layout.bottomMargin + (layout.marginSize * 0.25) + 25);
 
   // Draw y-axis label.
   push();
-  translate(layout.leftMargin - (layout.marginSize * 0.3),
+  translate(layout.leftMargin - (layout.marginSize * 0.3) - 25,
             layout.bottomMargin / 1.45);
   rotate(- PI / 2);
   text(y1Label, 0, 0);
@@ -185,7 +185,7 @@ function drawXAxisTickLabel(value, layout, mapFunction) {
   // Add tick label.
   text(value,
        x,
-       layout.bottomMargin + layout.marginSize / 8);
+       layout.bottomMargin + layout.marginSize / 8 + 6);
 
   if (layout.grid) {
     // Add grid line.
@@ -241,4 +241,12 @@ function drawLegend(xPos, yPos, labels) {
     text(labels[i].text, currentX + boxSize + 10, yPos + boxSize / 2);
   }
 }
+
+function clearMenuSelection() {
+  // Pega todos os elementos com .selected e tira a classe
+  document.querySelectorAll('.menu-item.selected').forEach(function(el) {
+    el.classList.remove('selected');
+  });
+}
+
 //------------------------------- END NEW CODE -----------------------------------------//

@@ -8,6 +8,8 @@ let menuTop;
 
 // Acessability
 let accessibilityMode = false;
+let clicked = false;
+let activeButton = false;
 
 function preload() {
   // Load images
@@ -43,6 +45,9 @@ function setup() {
   // Font
   textFont(robotoFont);
 
+  // Call constructors.
+  canvas = new canvasDesign();
+
 //------------------------------- END NEW CODE -----------------------------------------//
 
   // Add the visualisation objects here.
@@ -58,8 +63,6 @@ function setup() {
 
 function draw() {
 //------------------------------- START NEW CODE -----------------------------------------//
-  // Call constructors.
-  canvas = new canvasDesign();
 
   // Entire canvas background
   background(255);
@@ -73,9 +76,43 @@ function draw() {
   // Draw borders into the canvas.
   canvas.draw_canvas_borders(menuLeft.x, 0, width - menuLeft.x, height, 2, 0);
 
-  // Draw menu bar at the left of the canvas.
-  canvas.draw_menu_bar(menuLeft.x, menuLeft.y, menuLeft.w, menuLeft.h, 0, "#C8102E");  
-  // canvas.draw_menu_bar(menuLeft.x, menuLeft.y, menuLeft.w, menuLeft.h, 0, '#E69F00');  
+  // Button 
+  if (canvas.drawAccessibilityButton(1200, 123, "Colorblind Mode", accessibilityMode)) {
+    if (activeButton == false) {
+      clicked = true;
+      activeButton = true;
+    }
+  } else {
+    activeButton = false;
+  }
+
+  if (clicked == true) {
+    accessibilityMode = !accessibilityMode;
+    clicked = false;
+  }
+
+  if (accessibilityMode == false) {
+    
+    // Draw menu bar at the left of the canvas.
+    canvas.draw_menu_bar(menuLeft.x, menuLeft.y, menuLeft.w, menuLeft.h, 0, "#C8102E");  
+  }
+
+  else {
+    // Draw menu bar at the left of the canvas.
+    canvas.draw_menu_bar(menuLeft.x, menuLeft.y, menuLeft.w, menuLeft.h, 0, "#E66100");  
+  }
+
+  // Draw button to homepage
+  if (gallery.selectedVisual != null) {
+    if (canvas.drawBackMenuButton(1025, 123, "Back to homepage")) {
+      if (typeof gallery.selectedVisual.destroy === 'function') {
+        gallery.selectedVisual.destroy(); // p5.js DOM cleanup
+      }
+
+      gallery.selectedVisual = null;
+      clearMenuSelection();
+    }
+  }
 
   // Draw upper rectangle
   canvas.draw_menu_bar(menuTop.x, menuTop.y, menuTop.w, menuTop.h, 0, "#C7C7C795");

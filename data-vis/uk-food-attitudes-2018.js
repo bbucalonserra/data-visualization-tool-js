@@ -78,12 +78,20 @@ function UKFoodAttitudes() {
     var labels = this.data.getColumn(0);
 
     // Colour to use for each category.
-    let colours = [
-      color('#002147'), // Royal Blue
-      color('#C8102E'), // Scarlet Red
-      color('#FFD700'), // Gold
-      color('#007A33'), // Emerald Green
-      color('#4B0082') // Deep Purple
+    let RegularColours = [
+      color('#002147'),
+      color('#C8102E'),
+      color('#FFD700'),
+      color('#007A33'),
+      color('#4B0082')
+    ];
+
+    let ColorblindColours = [
+      color('#544F4B'),
+      color('#007C91'),
+      color('#E66100'),
+      color('#B2BEB5'),
+      color('#FFD66E')
     ];
 
     // Make a title.
@@ -91,7 +99,7 @@ function UKFoodAttitudes() {
     var title = ""
 
     // Draw the pie chart!
-    this.pie.draw(col, labels, colours, title);
+    this.pie.draw(col, labels, accessibilityMode == true ? ColorblindColours : RegularColours, title);
   };
 
   this.drawLegend = function () {

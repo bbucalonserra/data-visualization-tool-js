@@ -41,24 +41,45 @@ function PayGapByJob2017() {
 
   this.setup = function() {
     // Set colors range
-    let colorRanges = [
-    [[200, 255], [140, 180], [0, 50]],
-    [[20, 60], [60, 100], [60, 90]],
-    [[180, 220], [0, 40], [20, 60]],
-    [[80, 120], [130, 170], [40, 80]],
-    [[240, 255], [190, 220], [100, 140]],
-    [[0, 40], [0, 40], [0, 40]],
-    [[100, 160], [100, 160], [100, 160]]];
+    let colorsColorBlind = [
+    '#E66100',
+    '#007C91',
+    '#000000',
+    '#FFD66E',
+    '#B2BEB5',
+    '#544F4B',
+    '#0072B2',
+    '#009E73',
+    '#D55E00'
+    ]
+
+    let colorsRegular = [
+      '#002147',
+      '#C8102E',
+      '#FFD700',
+      '#007A33',
+      '#4B0082',
+      '#A8A9AD',
+      '#FF8C00',
+      '#4682B4',
+      '#800020'
+    ]
 
     // Creating job types
     this.jobs = this.data.getColumn('job_type');
     this.unique_jobs = [... new Set (this.jobs)];
-    this.job_colors = [];
+    this.job_colors_regular = [];
+    this.job_colors_color_blind = [];
 
     // Iterating
-    for (let i = 0; i < this.unique_jobs.length; i++) {
-      let range = colorRanges[int(random(colorRanges.length))];
-      this.job_colors.push(color(random(range[0][0], range[0][1]), random(range[1][0], range[1][1]), random(range[2][0], range[2][1])))
+    for (var i = 0; i < this.unique_jobs.length; i++) {
+      var hex = colorsColorBlind[i % colorsColorBlind.length];
+      this.job_colors_color_blind.push(color(hex));
+    }
+
+    for (var i = 0; i < this.unique_jobs.length; i++) {
+      var hex = colorsRegular[i % colorsRegular.length];
+      this.job_colors_regular.push(color(hex));
     }
   };
 
@@ -71,7 +92,6 @@ function PayGapByJob2017() {
       return;
     }
 
-    console.log(this.job_colors)
     // Text
     this.drawText();
 
@@ -120,7 +140,7 @@ function PayGapByJob2017() {
 
       let job_index = this.unique_jobs.indexOf(this.jobs[i]);
 
-      fill(this.job_colors[job_index]);
+      fill(accessibilityMode == true ? this.job_colors_color_blind[job_index] : this.job_colors_regular[job_index]);
 
       ellipse(
         ( map(propFemale[i], propFemaleMin, propFemaleMax,
@@ -179,8 +199,11 @@ function PayGapByJob2017() {
 
   // Draw legend
   this.drawLegend = function () {
-    for (let i = 0; i < this.job_colors.length; i++) {
-      // Text
+    for (let i = 0; i < (accessibilityMode ? this.job_colors_color_blind.length : this.job_colors_regular.length); i++) {
+      // Escolhe o array de cores com base na condição
+      let selectedColors = accessibilityMode ? this.job_colors_color_blind : this.job_colors_regular;
+
+      // Texto
       textSize(14);
       textAlign(LEFT, TOP);
       textFont(robotoFont);
@@ -188,8 +211,12 @@ function PayGapByJob2017() {
       noStroke();
       text(this.unique_jobs[i], 410, 590 + 20 * i);
 
-      // Circle
-      fill(red(this.job_colors[i]), green(this.job_colors[i]), blue(this.job_colors[i]));
+      // Círculo com a cor correspondente
+      fill(
+        red(selectedColors[i]),
+        green(selectedColors[i]),
+        blue(selectedColors[i])
+      );
       ellipse(400, 598 + 20 * i, 10, 10);
     }
   };

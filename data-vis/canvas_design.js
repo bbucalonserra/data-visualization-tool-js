@@ -54,5 +54,47 @@
       text(user_message3, 750, 510); 
       pop();
     }
+
+    drawAccessibilityButton(x, y, label, isActive) {
+      if (isActive) {
+        fill('#E66100'); // verde quando ativo
+      } else {
+        fill('#C8102E'); // vermelho quando inativo
+      }      
+      noStroke();
+      rect(x, y, 140, 40, 15);
+
+      fill(255);
+      textSize(18);
+      textFont(robotoFont);
+      textAlign(CENTER, CENTER);
+      text(label, x + 70, y + 18);
+      if (mouseIsPressed &&
+          mouseX > x && mouseX < x + 140 &&
+          mouseY > y && mouseY < y + 40) {
+        return true;
+      }
+      return false;
+    }
+
+    drawBackMenuButton(x, y, label) {
+      fill(accessibilityMode == true ? "#E66100" : "#C8102E")
+      noStroke();
+      rect(x, y, 150, 40, 15);
+
+      fill(255);
+      textSize(18);
+      textFont(robotoFont);
+      textAlign(CENTER, CENTER);
+      text(label, x + 75, y + 18);
+
+      if (mouseIsPressed &&
+          mouseX > x && mouseX < x + 140 &&
+          mouseY > y && mouseY < y + 40) {
+        return true;
+      }
+
+      return false;
+    }
   }
 //------------------------------- END NEW CODE -----------------------------------------//

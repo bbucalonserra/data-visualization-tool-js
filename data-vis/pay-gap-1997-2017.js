@@ -118,10 +118,17 @@ function PayGapTimeSeries() {
                    this.layout);
     
     // Draw legend
-    this.drawLegend(1100, 740, [
-    {text: "Woman", color: '#C8102E'},
-    {text: "Men", color: '#002147'}
-    ]);
+    if(accessibilityMode == true) {
+      this.drawLegend(1100, 740, [
+      {text: "Woman", color: '#E66100'},
+      {text: "Men", color: '#007C91'}
+    ])} 
+    else {
+      this.drawLegend(1100, 740, [
+      {text: "Woman", color: '#C8102E'},
+      {text: "Men", color: '#002147'}
+    ])}
+
 
     // Plot all pay gaps between startYear and endYear using the width of the canvas minus margins.
     var previous;
@@ -152,6 +159,24 @@ function PayGapTimeSeries() {
           this.animationProgress += 0.0010;
           this.animationProgress = min(this.animationProgress, 1);
 
+          if(accessibilityMode == true) {
+          // Draw bars male
+          fill('#007C91');
+          noStroke();
+          rect(this.mapYearToWidth(current.year) - barWidth/2,
+               this.layout.bottomMargin,
+               barWidth,
+               -(this.layout.bottomMargin - this.mapMedianToHeight(current.male)) * this.animationProgress)
+
+          // Draw bars female
+          fill('#E66100');
+          noStroke();
+          rect(this.mapYearToWidth(current.year) - barWidth/2,
+              this.layout.bottomMargin,
+              barWidth,
+              -(this.layout.bottomMargin - this.mapMedianToHeight(current.female)) * this.animationProgress);
+          } else {
+
           // Draw bars male
           fill('#002147');
           noStroke();
@@ -167,6 +192,7 @@ function PayGapTimeSeries() {
               this.layout.bottomMargin,
               barWidth,
               -(this.layout.bottomMargin - this.mapMedianToHeight(current.female)) * this.animationProgress);
+          }
 
           // Draw line segment connecting previous year to current
           // year pay gap.

@@ -7,7 +7,7 @@ function aiCheck() {
     this.id = 'ai usage';
 
     // Title to display above the plot.
-    this.title = 'how often does people double-check AI generated information.';
+    this.title = 'how often people verify AI output.';
 
     // Property to represent whether data has been loaded.
     this.loaded = false;
@@ -33,6 +33,9 @@ function aiCheck() {
 
         // Loop through each quantity and create bubble object.
         this.createBubbles(9);
+
+        // Change colors
+        this.currentAccessibilityMode = accessibilityMode;
     };
 
     this.destroy = function() {
@@ -47,6 +50,12 @@ function aiCheck() {
 
         // Anonymous function to draw text.
         this.drawText();
+
+        if (this.currentAccessibilityMode !== accessibilityMode) {
+            this.currentAccessibilityMode = accessibilityMode;
+            this.aBubble = [];
+            this.createBubbles(9);
+        }
 
         // Loop to create a bubble for every quantity and avoid letting them touch each other. NESTED LOOP! O(n²).
         for (let i = 0; i < this.aBubble.length; i++) {
@@ -78,15 +87,27 @@ function aiCheck() {
         }
 
         // Function to draw Legend.
-        this.draw5Legend(
-            450, 
-            740,
-            "About half the time",
-            "Always",
-            "Most of the time",
-            "Never",
-            "Sometimes"
-        )
+        if (accessibilityMode == true) {
+            this.draw5LegendColorBlinded(
+                450, 
+                740,
+                "About half the time",
+                "Always",
+                "Most of the time",
+                "Never",
+                "Sometimes"
+            )
+        } else {
+            this.draw5LegendRegular(
+                450, 
+                740,
+                "About half the time",
+                "Always",
+                "Most of the time",
+                "Never",
+                "Sometimes"
+            )
+        }
     }
     
     // Function to draw the text from the "user", according to the tittle.
@@ -110,7 +131,8 @@ function aiCheck() {
     this.createBubbles = function (sizeValue) {
 
         // Colors.
-        let bubbleColors = ['#FFCD6E', '#688E26', '#1B4D3E', '#C8102E', '#C99A00'];
+        let RegularbubbleColors = ['#FFCD6E', '#688E26', '#1B4D3E', '#C8102E', '#C99A00'];
+        let ColorblindBubbleColors = ['#000000', '#007C91', '#E66100', '#FFD66E', '#B2BEB5'];
 
         // Positions for them to not colide while creating. Avoiding using random for positions.
         let xPositions = [500, 600, 700, 800, 850];
@@ -122,14 +144,12 @@ function aiCheck() {
 
             // Create one bubble object.
             let bubble = {
-                // x: random(500, 1200),
-                // y: random(300, 600),
                 x: xPositions[i],
                 y: yPositions[i],
                 velocityX: random(-0.2, + 0.2),
                 velocityY: random(-0.2, + 0.2),
                 size: size,
-                color: (bubbleColors[i])
+                color: accessibilityMode ? ColorblindBubbleColors[i] : RegularbubbleColors[i]
             };
 
             // Add bubble to array.
@@ -199,7 +219,7 @@ function aiCheck() {
     };
 
     // Function to draw the legend.
-    this.draw5Legend = function (xPos, yPos, labelText1, labelText2, labelText3, labelText4, labelText5) {
+    this.draw5LegendRegular = function (xPos, yPos, labelText1, labelText2, labelText3, labelText4, labelText5) {
         rightOffset = 300;
         textFont(robotoFont);
         textAlign(LEFT, CENTER);
@@ -228,6 +248,41 @@ function aiCheck() {
         text(labelText4, xPos + 400 + rightOffset, yPos + 6);
 
         fill('#C99A00');
+        rect(xPos + 460 + rightOffset, yPos, 15, 15, 3);
+        fill(0);
+        text(labelText5, xPos + 480 + rightOffset, yPos + 6);
+    }
+
+    // Function to draw the legend.
+    this.draw5LegendColorBlinded = function (xPos, yPos, labelText1, labelText2, labelText3, labelText4, labelText5) {
+        rightOffset = 300;
+        textFont(robotoFont);
+        textAlign(LEFT, CENTER);
+        textSize(16);
+        noFill();
+        noStroke();
+
+        fill('#000000');
+        rect(xPos + rightOffset, yPos, 15, 15, 3);
+        fill(0);
+        text(labelText1, xPos + 25 + rightOffset, yPos + 6);
+
+        fill('#007C91');
+        rect(xPos + 160 + rightOffset, yPos, 15, 15, 3);
+        fill(0);
+        text(labelText2, xPos + 180 + rightOffset, yPos + 6);
+
+        fill('#E66100');
+        rect(xPos + 240 + rightOffset, yPos, 15, 15, 3);
+        fill(0);
+        text(labelText3, xPos + 260 + rightOffset, yPos + 6);
+
+        fill('#FFD66E');
+        rect(xPos + 380 + rightOffset, yPos, 15, 15, 3);
+        fill(0);
+        text(labelText4, xPos + 400 + rightOffset, yPos + 6);
+
+        fill('#B2BEB5');
         rect(xPos + 460 + rightOffset, yPos, 15, 15, 3);
         fill(0);
         text(labelText5, xPos + 480 + rightOffset, yPos + 6);
