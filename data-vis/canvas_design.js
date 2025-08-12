@@ -37,7 +37,7 @@
       image(user_logo, menuLeft.x + menuLeft.w + 225, 380, 200, 200);
       let welcome_message = "Welcome,"
       let user_message = "user!"
-      let user_message2 = "Check the red menu bar on the left"
+      let user_message2 = "Check the menu bar on the left"
       let user_message3 = "to start the data exploration!"
 
       push();
