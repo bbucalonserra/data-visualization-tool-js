@@ -77,7 +77,7 @@ function draw() {
   canvas.draw_canvas_borders(menuLeft.x, 0, width - menuLeft.x, height, 2, 0);
 
   // Button 
-  if (canvas.drawButton(1200, 123, "Colorblind Mode", accessibilityMode)) {
+  if (canvas.drawAccessibilityButton(1200, 123, "Colorblind Mode", accessibilityMode)) {
     if (activeButton == false) {
       clicked = true;
       activeButton = true;
@@ -100,6 +100,18 @@ function draw() {
   else {
     // Draw menu bar at the left of the canvas.
     canvas.draw_menu_bar(menuLeft.x, menuLeft.y, menuLeft.w, menuLeft.h, 0, "#E66100");  
+  }
+
+  // Draw button to homepage
+  if (gallery.selectedVisual != null) {
+    if (canvas.drawBackMenuButton(1025, 123, "Back to homepage")) {
+      if (typeof gallery.selectedVisual.destroy === 'function') {
+        gallery.selectedVisual.destroy(); // p5.js DOM cleanup
+      }
+
+      gallery.selectedVisual = null;
+      clearMenuSelection();
+    }
   }
 
   // Draw upper rectangle

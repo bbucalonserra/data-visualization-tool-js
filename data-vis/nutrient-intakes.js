@@ -16,7 +16,9 @@ function NutrientsTimeSeries() {
   this.y1AxisLabel = 'Values';
   this.y2AxisLabel = "";
 
-  this.colors = [];
+  this.RegularColors = [];
+
+  this.colorBlindedColors = [];
 
   var marginSize = 35;
 
@@ -74,11 +76,18 @@ function NutrientsTimeSeries() {
     this.endYear = Number(this.data.columns[this.data.columns.length - 1]);
 
     // Colors
-    this.colors = [
+    this.RegularColors = [
       "#002147",
       "#C8102E",
       "#FFD700",
       "#007A33"
+    ]
+
+    this.colorBlindedColors = [
+      "#E66100",
+      "#007C91",
+      "#B2BEB5",
+      "#544F4B"
     ]
 
     // Find min and max
@@ -142,7 +151,7 @@ function NutrientsTimeSeries() {
         if (previous != null) {
           // Draw line segment connecting previous year to current
           // year pay gap.
-          stroke(this.colors[i]);
+          stroke(accessibilityMode == true ? this.colorBlindedColors[i] : this.RegularColors[i]);
           strokeWeight(4);
           line(this.mapYearToWidth(previous.year),
               this.mapPayGapToHeight(previous.value),
@@ -207,22 +216,22 @@ function NutrientsTimeSeries() {
       noFill();
       noStroke();
 
-      fill(this.colors[0]);
+      fill(accessibilityMode == true ? this.colorBlindedColors[0] : this.RegularColors[0]);
       rect(xPos + 120 + rightOffset, yPos, 15, 15, 3);
       fill(0);
       text(labelText1, xPos + 140 + rightOffset, yPos + 6);
 
-      fill(this.colors[1]);
+      fill(accessibilityMode == true ? this.colorBlindedColors[1] : this.RegularColors[1]);
       rect(xPos + 220 + rightOffset, yPos, 15, 15, 3);
       fill(0);
       text(labelText2, xPos + 240 + rightOffset, yPos + 6);
 
-      fill(this.colors[2]);
+      fill(accessibilityMode == true ? this.colorBlindedColors[2] : this.RegularColors[2]);
       rect(xPos + 330 + rightOffset, yPos, 15, 15, 3);
       fill(0);
       text(labelText3, xPos + 350 + rightOffset, yPos + 6);
 
-      fill(this.colors[3]);
+      fill(accessibilityMode == true ? this.colorBlindedColors[3] : this.RegularColors[3]);
       rect(xPos + 420 + rightOffset, yPos, 15, 15, 3);
       fill(0);
       text(labelText4, xPos + 440 + rightOffset, yPos + 6);

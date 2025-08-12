@@ -241,4 +241,12 @@ function drawLegend(xPos, yPos, labels) {
     text(labels[i].text, currentX + boxSize + 10, yPos + boxSize / 2);
   }
 }
+
+function clearMenuSelection() {
+  // Pega todos os elementos com .selected e tira a classe
+  document.querySelectorAll('.menu-item.selected').forEach(function(el) {
+    el.classList.remove('selected');
+  });
+}
+
 //------------------------------- END NEW CODE -----------------------------------------//
