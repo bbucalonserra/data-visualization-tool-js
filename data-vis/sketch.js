@@ -15,12 +15,6 @@ function preload() {
   // Load images
   uol_logo = loadImage('assets/uol_logo.png');
   user_logo = loadImage('assets/user_logo.png');
-  ai_icon = loadImage('assets/ai.png');
-  climate_icon = loadImage('assets/climate.png');
-  job_icon = loadImage('assets/job.png');
-  pay_icon = loadImage('assets/pay.png');
-  tech_icon = loadImage('assets/tech.png');
-  vitamin_icon = loadImage('assets/vitamin.png');
 
   // Load font
   robotoFont = loadFont('assets/roboto_font/Roboto_Condensed-Regular.ttf');
