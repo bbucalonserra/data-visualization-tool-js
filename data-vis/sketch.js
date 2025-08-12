@@ -89,12 +89,26 @@ function draw() {
   if (clicked == true) {
     accessibilityMode = !accessibilityMode;
     clicked = false;
+
+    if (accessibilityMode) {
+        document.documentElement.style.setProperty('--hover-bg', '#007C91');
+        document.documentElement.style.setProperty('--hover-fg', '#FFFFFF');
+
+        document.documentElement.style.setProperty('--selected-bg', '#FFFFFF');
+        document.documentElement.style.setProperty('--selected-fg', '#007C91');
+    } else {
+        document.documentElement.style.setProperty('--hover-bg', '#075293');
+        document.documentElement.style.setProperty('--hover-fg', '#FFFFFF');
+
+        document.documentElement.style.setProperty('--selected-bg', '#F2F2F2');
+        document.documentElement.style.setProperty('--selected-fg', '#075293');
+    }
   }
 
   if (accessibilityMode == false) {
     
     // Draw menu bar at the left of the canvas.
-    canvas.draw_menu_bar(menuLeft.x, menuLeft.y, menuLeft.w, menuLeft.h, 0, "#C8102E");  
+    canvas.draw_menu_bar(menuLeft.x, menuLeft.y, menuLeft.w, menuLeft.h, 0, "#C8102E");
   }
 
   else {

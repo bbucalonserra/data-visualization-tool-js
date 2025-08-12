@@ -8,7 +8,6 @@ body{
     display: flex;
     align-items: center;
     width: 250px;
-    /* width: 200px; */
     height: 50px;
     list-style-type: none;
     padding: 5px;
@@ -32,13 +31,20 @@ body{
   display: flex;
 }
 
-.hover {
-    background: #075293;
-    color: #ffffff;
+:root {
+    --hover-bg: #075293;
+    --hover-fg: #ffffff;
+    --selected-bg: #F2F2F2;
+    --selected-fg: #075293;
 }
 
-.selected{
-    background: #F2F2F2;
-    color: #075293;
+.hover {
+    background: var(--hover-bg);
+    color: var(--hover-fg);
+}
+
+.selected {
+    background: var(--selected-bg);
+    color: var(--selected-fg);
     font-weight: 500;
 }
