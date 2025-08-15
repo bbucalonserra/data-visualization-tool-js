@@ -71,6 +71,7 @@ function TechDiversityGender() {
   };
 
   this.draw = function() {
+    // Check if the data is or is not loaded yet.
     if (!this.loaded) {
       console.log('Data not yet loaded');
       return;
@@ -82,9 +83,11 @@ function TechDiversityGender() {
     // Draw Female/Male labels at the top of the plot.
     this.drawCategoryLabels();
 
-    var lineHeight = (height*0.90 - this.layout.topMargin) /
+    // Creating the line height.
+    var lineHeight = (height * 0.90 - this.layout.topMargin) /
         this.data.getRowCount();
 
+    // Drawing the charts.
     for (var i = 0; i < this.data.getRowCount(); i++) {
 
       // Calculate the y position for each company.
@@ -106,35 +109,19 @@ function TechDiversityGender() {
       text(company.name,
            this.layout.leftMargin - this.layout.pad,
            lineY - 4);
-
+      
       // Draw female employees rectangle.
+      fill(accessibilityMode == true ? this.femaleBlindedColour : this.femaleRegularColour);
+      rect(this.layout.leftMargin,
+      lineY,
+      this.mapPercentToWidth(company.female),
+      lineHeight - this.layout.pad);
 
-      if(accessibilityMode == true) {
-        fill(this.femaleBlindedColour);
-        rect(this.layout.leftMargin,
-        lineY,
-        this.mapPercentToWidth(company.female),
-        lineHeight - this.layout.pad);
-
-        fill(this.maleBlindedColour);
-        rect(this.layout.leftMargin + this.mapPercentToWidth(company.female),
-            lineY,
-            this.mapPercentToWidth(company.male),
-            lineHeight - this.layout.pad);
-
-      } else {
-        fill(this.femaleRegularColour);
-        rect(this.layout.leftMargin,
-        lineY,
-        this.mapPercentToWidth(company.female),
-        lineHeight - this.layout.pad);
-
-        fill(this.maleRegularColour);
-        rect(this.layout.leftMargin + this.mapPercentToWidth(company.female),
-            lineY,
-            this.mapPercentToWidth(company.male),
-            lineHeight - this.layout.pad);
-      }
+      fill(accessibilityMode == true ? this.maleBlindedColour : this.maleRegularColour);
+      rect(this.layout.leftMargin + this.mapPercentToWidth(company.female),
+          lineY,
+          this.mapPercentToWidth(company.male),
+          lineHeight - this.layout.pad);
     }
 
   
@@ -142,7 +129,7 @@ function TechDiversityGender() {
     var femaleArray = [];
     var maleArray = [];
 
-    //
+    // Get row counts for each gender.
     for (let i = 0; i < this.data.getRowCount(); i++) {
       femaleArray.push(this.data.getNum(i, 'female'));
       maleArray.push(this.data.getNum(i, 'male'));
@@ -164,6 +151,7 @@ function TechDiversityGender() {
     this.drawMean();
   };
 
+  // Function to draw the category labels.
   this.drawCategoryLabels = function() {
     fill(0);
     textSize(18);
@@ -182,6 +170,7 @@ function TechDiversityGender() {
          this.layout.pad + 230);
   };
 
+  // Function to map the percent to width.
   this.mapPercentToWidth = function(percent) {
     return map(percent,
                0,
@@ -262,7 +251,5 @@ function TechDiversityGender() {
       textSize(25);
       text("Male mean", width - 180, height - 255);
     }
-
-
   }
 }
