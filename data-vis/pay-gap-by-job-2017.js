@@ -38,7 +38,7 @@ function PayGapByJob2017() {
       });
 
   };
-
+//------------------------------- START NEW CODE -----------------------------------------//
   this.setup = function() {
     // Set colors range
     let colorsColorBlind = [
@@ -160,6 +160,7 @@ function PayGapByJob2017() {
     }
   };
 
+//------------------------------- END NEW CODE -----------------------------------------//
   this.addAxes = function () {
     stroke(200);
 
@@ -197,6 +198,7 @@ function PayGapByJob2017() {
     pop();
   };
 
+  //------------------------------- START NEW CODE -----------------------------------------//
   // Draw legend
   this.drawLegend = function () {
     for (let i = 0; i < (accessibilityMode ? this.job_colors_color_blind.length : this.job_colors_regular.length); i++) {
@@ -220,4 +222,5 @@ function PayGapByJob2017() {
       ellipse(400, 598 + 20 * i, 10, 10);
     }
   };
+//------------------------------- END NEW CODE -----------------------------------------//
 }

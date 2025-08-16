@@ -66,7 +66,7 @@ function TechDiversityRace() {
 
     // Boxes
     this.drawBoxes();
-
+//------------------------------- START NEW CODE -----------------------------------------//
     // Legend
     if (accessibilityMode == true) {
       this.draw5LegendColorBlind(
@@ -91,6 +91,7 @@ function TechDiversityRace() {
           "Other"
       )
     }
+//------------------------------- END NEW CODE -----------------------------------------//
 
     // Anonymous function to draw text.
     this.drawText();

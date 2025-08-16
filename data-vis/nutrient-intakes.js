@@ -236,7 +236,5 @@ function NutrientsTimeSeries() {
       fill(0);
       text(labelText4, xPos + 440 + rightOffset, yPos + 6);
   }
-
-
 }
 //------------------------------- END NEW CODE -----------------------------------------//

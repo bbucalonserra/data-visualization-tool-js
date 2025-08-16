@@ -179,6 +179,7 @@ function TechDiversityGender() {
                this.layout.plotWidth());
   };
 
+//------------------------------- START NEW CODE -----------------------------------------//
   // Function to draw the text from the "user", according to the tittle.
   this.drawText = function() {
       // Draw user message
@@ -198,58 +199,31 @@ function TechDiversityGender() {
 
   // Function to draw mean values
   this.drawMean = function() {
-    if(accessibilityMode == true) {
-      // Female
-      fill(this.femaleBlindedColour);
-      ellipse(width - 230, height - 430, 180, 180);
+    // Female
+    fill(accessibilityMode == true ? this.femaleBlindedColour : this.femaleRegularColour);
+    ellipse(width - 230, height - 430, 180, 180);
 
-      textSize(55);
-      textFont(robotoFont);
-      fill("white");
-      noStroke();
-      text(this.femaleMean + "%", width - 180, height - 440);
+    textSize(55);
+    textFont(robotoFont);
+    fill("white");
+    noStroke();
+    text(this.femaleMean + "%", width - 180, height - 440);
 
-      textSize(25);
-      text("Female mean", width - 165, height - 475);
+    textSize(25);
+    text("Female mean", width - 165, height - 475);
 
-      // Male
-      fill(this.maleBlindedColour);
-      ellipse(width - 230, height - 200, 180, 180);
+    // Male
+    fill(accessibilityMode == true ? this.maleBlindedColour : this.maleRegularColour);
+    ellipse(width - 230, height - 200, 180, 180);
 
-      textSize(60);
-      textFont(robotoFont);
-      fill("white");
-      noStroke();
-      text(this.maleMean + "%", width - 180, height - 220);
+    textSize(60);
+    textFont(robotoFont);
+    fill("white");
+    noStroke();
+    text(this.maleMean + "%", width - 180, height - 220);
 
-      textSize(25);
-      text("Male mean", width - 180, height - 255);
-    } else {
-      // Female
-      fill(this.femaleRegularColour);
-      ellipse(width - 230, height - 430, 180, 180);
-
-      textSize(55);
-      textFont(robotoFont);
-      fill("white");
-      noStroke();
-      text(this.femaleMean + "%", width - 180, height - 440);
-
-      textSize(25);
-      text("Female mean", width - 165, height - 475);
-
-      // Male
-      fill(this.maleRegularColour);
-      ellipse(width - 230, height - 200, 180, 180);
-
-      textSize(60);
-      textFont(robotoFont);
-      fill("white");
-      noStroke();
-      text(this.maleMean + "%", width - 180, height - 220);
-
-      textSize(25);
-      text("Male mean", width - 180, height - 255);
-    }
+    textSize(25);
+    text("Male mean", width - 180, height - 255);
   }
+//------------------------------- END NEW CODE -----------------------------------------//
 }

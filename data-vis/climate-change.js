@@ -170,6 +170,7 @@ function ClimateChange() {
           && current.year > this.startYear
           && current.year <= this.endYear) {
 
+//------------------------------- END NEW CODE -----------------------------------------//
         // Draw background gradient to represent colour temperature of
         // the current year.
         noStroke();
@@ -230,6 +231,7 @@ function ClimateChange() {
     if (this.frameCount >= numYears) {
       //noLoop();
     }
+//------------------------------- END NEW CODE -----------------------------------------//
 
   };
 
@@ -286,6 +288,7 @@ function ClimateChange() {
   return color(red, green, blue, 100);
 };
 
+//------------------------------- START NEW CODE -----------------------------------------//
   // Function to draw the text from the "user", according to the tittle.
   this.drawText = function() {
     // Draw user message
@@ -319,6 +322,6 @@ function ClimateChange() {
     noStroke();
     text("Start date", 455, 219);
     text("End date", 640, 219);
-
   }
+//------------------------------- END NEW CODE -----------------------------------------//
 }

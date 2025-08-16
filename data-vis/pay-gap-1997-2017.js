@@ -146,6 +146,7 @@ function PayGapTimeSeries() {
 //------------------------------- START NEW CODE -----------------------------------------//
         'male': this.data.getNum(i, 'median_male'), // First attribute is row, second is column. So: row i, column median_male.
         'female': this.data.getNum(i, 'median_female')
+
 //------------------------------- END NEW CODE -----------------------------------------//
       };
 
@@ -267,6 +268,7 @@ function PayGapTimeSeries() {
                this.layout.topMargin);
   };
 
+//------------------------------- START NEW CODE -----------------------------------------//
   this.drawText = function() {
     // Draw user message
     let message_pay_gap = "Check out the "
@@ -282,7 +284,7 @@ function PayGapTimeSeries() {
     text(this.title, 612, 125.5)
     pop();
     }
-
+ 
   this.drawLegend = function(xPos, yPos, labels) {
   // How to use:
   //   draw5Legend(100, 50, [
