@@ -70,7 +70,7 @@ function draw() {
   // Draw borders into the canvas.
   canvas.draw_canvas_borders(menuLeft.x, 0, width - menuLeft.x, height, 2, 0);
 
-  // Button 
+  // Create logic for button 
   if (canvas.drawAccessibilityButton(1200, 123, "Colorblind Mode", accessibilityMode)) {
     if (activeButton == false) {
       clicked = true;

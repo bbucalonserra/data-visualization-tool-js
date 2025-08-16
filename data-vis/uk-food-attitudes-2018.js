@@ -45,6 +45,7 @@ function UKFoodAttitudes() {
     }
   };
 
+  // Destroy items from select
   this.destroy = function() {
     this.select.remove();
   };
@@ -58,7 +59,7 @@ function UKFoodAttitudes() {
       return;
     }
 
-    // 
+    // Draw the text
     this.drawText();
 
     // Draw Legend
@@ -102,6 +103,7 @@ function UKFoodAttitudes() {
     this.pie.draw(col, labels, accessibilityMode == true ? ColorblindColours : RegularColours, title);
   };
 
+  // Function todraw the legend.
   this.drawLegend = function () {
 
     // Boxes
@@ -118,6 +120,7 @@ function UKFoodAttitudes() {
     text("Opinion", 385, 205);
   };
 
+  // Function to draw the text into the layout.
   this.drawText = function() {
       // Draw user message
       let texts = "Check out ";

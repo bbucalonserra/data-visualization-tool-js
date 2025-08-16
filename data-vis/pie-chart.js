@@ -1,10 +1,16 @@
 function PieChart(x, y, diameter) {
 
+  // Assign x and y
   this.x = x;
   this.y = y;
+
+    // Assign diamanter
   this.diameter = diameter;
+
+  // Assign label spce
   this.labelSpace = 30;
 
+  // Function to get the radians according to data length
   this.get_radians = function(data) {
     var total = sum(data);
     var radians = [];
@@ -72,6 +78,7 @@ function PieChart(x, y, diameter) {
       }
     }
 
+    // if to create mouse hover
     if (mouse_pie_angle !== null && mouse_pie_angle >= lastAngle && mouse_pie_angle < lastAngle + angles[i]) {
       let [r, g, b] = colours[i].levels;
       let valueText = data[i].toFixed(2) + "%";
@@ -122,6 +129,7 @@ function PieChart(x, y, diameter) {
     }
   };
 
+  // Function to create a legend per item
   this.makeLegendItem = function(label, i, colour) {
     var x = this.x + 50 + this.diameter / 2;
     var y = this.y + (this.labelSpace * i) - this.diameter / 3;

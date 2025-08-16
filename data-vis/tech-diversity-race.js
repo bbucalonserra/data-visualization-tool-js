@@ -164,7 +164,7 @@ function TechDiversityRace() {
       pop();
   }
 
-  // Function to draw the legend.
+  // Function to draw legend with 5 items for regular (non colorblind)
   this.draw5LegendRegular = function (xPos, yPos, labelText1, labelText2, labelText3, labelText4, labelText5, labelText6) {
       rightOffset = 300;
       textFont(robotoFont);
@@ -204,6 +204,7 @@ function TechDiversityRace() {
       text(labelText6, xPos + 540 + rightOffset, yPos + 6);
   }
 
+  // Function to draw legend with 5 items for color-blind
   this.draw5LegendColorBlind = function (xPos, yPos, labelText1, labelText2, labelText3, labelText4, labelText5, labelText6) {
       rightOffset = 300;
       textFont(robotoFont);
@@ -250,6 +251,5 @@ function TechDiversityRace() {
     rect(863, 220, 440, 470, 15);
 
   }
-
 //------------------------------- END NEW CODE -----------------------------------------//
 }

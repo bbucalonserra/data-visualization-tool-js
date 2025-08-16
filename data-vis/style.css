@@ -32,6 +32,7 @@ body{
 }
 
 /*----------------------------- START NEW CODE ----------------------------------------*/
+/*Create logic to change the colors of mouse hover in the menu for colorblind mode*/
 :root {
     --hover-bg: #075293;
     --hover-fg: #ffffff;
