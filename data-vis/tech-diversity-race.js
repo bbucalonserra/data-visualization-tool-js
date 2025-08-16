@@ -137,7 +137,7 @@ function TechDiversityRace() {
     var title1 =  companyName1;
     var title2 = companyName2;
 
-    // Draw the pie chart!
+    // Draw the pie chart.
     if (accessibilityMode == true) {
       this.pie1.draw(col1, labels1, colorBlindColors, title1);
       this.pie2.draw(col2, labels2, colorBlindColors, title2);
@@ -244,6 +244,7 @@ function TechDiversityRace() {
       text(labelText6, xPos + 540 + rightOffset, yPos + 6);
   }
 
+  // Draw boxes.
   this.drawBoxes = function() {
     noFill();
     stroke(1);
