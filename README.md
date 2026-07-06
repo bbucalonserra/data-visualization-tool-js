@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Case study 3: Data visualisation
 
 ## Description
@@ -855,3 +856,8 @@ Each chart is rendered on a custom-designed canvas with accessible color schemes
         ├── tech-diversity-race.js
         └── uk-food-attitudes-2018.js
 ```
+=======
+Check the data visualization tool made fully using javascript!!
+
+https://bbucalonserra.github.io/data-visualization-tool-js/
+>>>>>>> e2a8aa68d4741873d5a4fdf82a919b76a2a3de37
